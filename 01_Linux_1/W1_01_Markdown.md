@@ -8,7 +8,7 @@ What You See Is What You Get
 Maak een Markdown document en push dit naar je portfolio-repository
 
 ### Gebruikte bronnen
-https://www.markdownguide.org/basic-syntax/
+- https://www.markdownguide.org/basic-syntax/
 
 
 ### Ervaren problemen

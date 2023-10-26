@@ -16,19 +16,19 @@ sudo -s = The “-s” parameter enables the user to run the shell with a specif
 
 ## Opdracht
 ### Gebruikte bronnen
-https://linuxhint.com/become-root-user-linux/
+- https://linuxhint.com/become-root-user-linux/
 
-https://manpages.ubuntu.com/manpages/focal/en/man8/sudo_root.8.html
+- https://manpages.ubuntu.com/manpages/focal/en/man8/sudo_root.8.html
 
-https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-22-04-quickstart
+- https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-22-04-quickstart
 
-https://www.baeldung.com/linux/username-not-in-sudoers-file
+- https://www.baeldung.com/linux/username-not-in-sudoers-file
 
-https://www.redhat.com/sysadmin/manage-permissions
+- https://www.redhat.com/sysadmin/manage-permissions
 
-https://www.cyberciti.biz/faq/where-are-the-passwords-of-the-users-located-in-linux/
+- https://www.cyberciti.biz/faq/where-are-the-passwords-of-the-users-located-in-linux/
 
-https://www.redhat.com/sysadmin/linux-user-group-management#:~:text=User%20account%20information%20is%20stored,able%20to%20recognize%20these%20fields.
+- https://www.redhat.com/sysadmin/linux-user-group-management#:~:text=User%20account%20information%20is%20stored,able%20to%20recognize%20these%20fields.
 
 <br>
 

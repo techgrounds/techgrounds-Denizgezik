@@ -16,11 +16,11 @@ Linux = an Operating System
 
 ## Opdracht
 ### Gebruikte bronnen
-https://www.clickittech.com/aws/connect-ec2-instance-using-ssh/
+- https://www.clickittech.com/aws/connect-ec2-instance-using-ssh/
 
-https://www.guru99.com/file-permissions.html
+- https://www.guru99.com/file-permissions.html
 
-https://datacarpentry.org/shell-economics/02-the-filesystem/index.html
+- https://datacarpentry.org/shell-economics/02-the-filesystem/index.html
 
 
 <br>
