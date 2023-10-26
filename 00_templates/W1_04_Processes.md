@@ -22,7 +22,7 @@ ssh is much more secure and using telnet is not recommended.
 <br>
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+Went quite smoothly i must say. Stopping/Killing the telnet daemon process only worked with the command "LOGOUT". Not with "Ctrl + ]" as most sources are explaining..
 
 <br>
 
