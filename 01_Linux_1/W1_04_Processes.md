@@ -28,3 +28,5 @@ Went quite smoothly i must say. Stopping/Killing the telnet daemon process only 
 
 ### Resultaat
 ![Alt text](<../00_includes/Telnet Daemon (screenshot) 2023-10-26 at 13.35.03.png>)
+
+![Alt text](<../00_includes/kill telnet daemon.png>)

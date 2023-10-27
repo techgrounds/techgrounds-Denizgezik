@@ -43,3 +43,4 @@ It was quite difficult in the beginning to swith to a root user, somehow. Once y
 2 new users : plant and flower
 
 ![Alt text](<../00_includes/New User sudo Screenshot 2023-10-25 at 22.05.19.png>)
+
