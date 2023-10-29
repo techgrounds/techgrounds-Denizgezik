@@ -30,13 +30,18 @@ https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tas
 ### Resultaat
 
 task 1)
+
+
 ![Alt text](<../00_includes/Terminal date & time.png>)
 
 ![Alt text](<../00_includes/date & time.png>)
 
+
 task2)
 
+
 ![Alt text](../00_includes/current_datetime.png)
+
 
 
 task 3)
