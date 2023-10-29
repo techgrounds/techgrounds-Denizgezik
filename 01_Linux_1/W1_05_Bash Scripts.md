@@ -7,6 +7,8 @@ How to create scripts in order to:
 2) use variables
 3) use conditions
 
+<br>
+
 ## Key-terms
 - Apache2
 - Bash Scripts
