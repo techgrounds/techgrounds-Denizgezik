@@ -21,6 +21,8 @@ a log file = a useful overview of events. Shows a record of what has happened wi
 
 https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-ubuntu-1804
 
+- https://www.freecodecamp.org/news/cron-jobs-in-linux/
+
 <br>
 
 ### Ervaren problemen
