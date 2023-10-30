@@ -36,11 +36,12 @@ Hypertext Transfer Protocol (HTTP)
 
 - https://osqa-ask.wireshark.org/questions/30931/how-to-see-the-websites-name/
 
-
+<br>
 
 ### Ervaren problemen
 In Wireshark moest ik even worstelen, omdat ik de gegevens wilde zien van welke bezochte website ik nou exact had gecaptured. Viel niet mee, moet ik zeggen, omdat alles encrypted is. 
 
+<br>
 
 ### Resultaat
 

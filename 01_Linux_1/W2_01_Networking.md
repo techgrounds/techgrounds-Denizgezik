@@ -15,6 +15,8 @@ TCP/IP = Transmission Control Protocol/Internet Protocol
 
 - - https://nordvpn.com/nl/blog/wat-is-dhcp/
 
+<br>
+
 ### Ervaren problemen
 Veelal theorie. Weinig problemen ondervonden. 
 Inloggen als admin van mijn router ging ook makkelijk.
