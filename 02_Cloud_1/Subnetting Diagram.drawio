@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" modified="2023-11-02T16:09:41.869Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15" etag="TnVHy1fbtnUY6AOm59Xi" version="22.0.8" type="github">
+  <diagram name="Page-1" id="IfN-q7y35NZr2u1xi1Se">
+    <mxGraphModel dx="1157" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-1" value="Intern LAN" style="swimlane;" parent="1" vertex="1">
+          <mxGeometry x="20" y="280" width="240" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-4" value="192.168.1.0/28" style="shape=ext;margin=3;double=1;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="S7OoX4hOGrA3Il8_2Npv-1" vertex="1">
+          <mxGeometry x="80" y="40" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-10" value="&lt;b&gt;&lt;font color=&quot;#ff0000&quot; style=&quot;font-size: 16px;&quot;&gt;Hosts: 15 (inclusief router)&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="S7OoX4hOGrA3Il8_2Npv-1" vertex="1">
+          <mxGeometry y="330" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-7" value="&lt;span style=&quot;font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: none; caret-color: rgb(255, 255, 255); font-family: &amp;quot;Söhne Mono&amp;quot;, Monaco, &amp;quot;Andale Mono&amp;quot;, &amp;quot;Ubuntu Mono&amp;quot;, monospace; font-size: 14px; text-align: left; float: none; display: inline !important;&quot;&gt;&lt;i style=&quot;color: rgb(255, 255, 255);&quot;&gt;&lt;span style=&quot;background-color: rgb(0, 0, 0);&quot;&gt;Beschikbare IP&#39;s: &lt;/span&gt;&lt;br&gt;&lt;/i&gt;&lt;span style=&quot;background-color: rgb(204, 255, 204);&quot;&gt;&lt;br&gt;192.168.1.1&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;br&gt;- &lt;br&gt;&lt;br&gt;192.168.1.14&lt;br&gt;&lt;/span&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="S7OoX4hOGrA3Il8_2Npv-1" vertex="1">
+          <mxGeometry x="45" y="130" width="170" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-2" value="Internettoegang via NAT-router" style="swimlane;" parent="1" vertex="1">
+          <mxGeometry x="300" y="280" width="240" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-5" value="192.168.1.16/27" style="shape=ext;margin=3;double=1;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="S7OoX4hOGrA3Il8_2Npv-2" vertex="1">
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-13" value="&lt;b&gt;&lt;font color=&quot;#ff0000&quot; style=&quot;font-size: 16px;&quot;&gt;Hosts: 30 (exclusief router)&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="S7OoX4hOGrA3Il8_2Npv-2" vertex="1">
+          <mxGeometry y="330" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-16" value="&lt;span style=&quot;font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: none; caret-color: rgb(255, 255, 255); font-family: &amp;quot;Söhne Mono&amp;quot;, Monaco, &amp;quot;Andale Mono&amp;quot;, &amp;quot;Ubuntu Mono&amp;quot;, monospace; font-size: 14px; text-align: left; float: none; display: inline !important;&quot;&gt;&lt;i style=&quot;color: rgb(255, 255, 255);&quot;&gt;&lt;span style=&quot;background-color: rgb(0, 0, 0);&quot;&gt;Beschikbare IP&#39;s: &lt;/span&gt;&lt;br&gt;&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;background-color: rgb(204, 255, 204);&quot;&gt;192.168.1.17&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;br&gt;- &lt;br&gt;&lt;br&gt;192.168.1.146&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="S7OoX4hOGrA3Il8_2Npv-2" vertex="1">
+          <mxGeometry x="35" y="130" width="170" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-3" value="Netwerkgateway naar internet" style="swimlane;" parent="1" vertex="1">
+          <mxGeometry x="570" y="280" width="245" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-6" value="192.168.1.48/29" style="shape=ext;margin=3;double=1;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="S7OoX4hOGrA3Il8_2Npv-3" vertex="1">
+          <mxGeometry x="40" y="40" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-14" value="&lt;b&gt;&lt;font color=&quot;#ff0000&quot; style=&quot;font-size: 16px;&quot;&gt;Hosts: 5 (exclusief gateway)&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="S7OoX4hOGrA3Il8_2Npv-3" vertex="1">
+          <mxGeometry x="-5" y="330" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S7OoX4hOGrA3Il8_2Npv-15" value="&lt;span style=&quot;font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: none; caret-color: rgb(255, 255, 255); font-family: &amp;quot;Söhne Mono&amp;quot;, Monaco, &amp;quot;Andale Mono&amp;quot;, &amp;quot;Ubuntu Mono&amp;quot;, monospace; font-size: 14px; text-align: left; float: none; display: inline !important;&quot;&gt;&lt;i style=&quot;color: rgb(255, 255, 255);&quot;&gt;&lt;span style=&quot;background-color: rgb(0, 0, 0);&quot;&gt;Beschikbare IP&#39;s: &lt;/span&gt;&lt;br&gt;&lt;/i&gt;&lt;span style=&quot;background-color: rgb(204, 255, 204);&quot;&gt;&lt;br&gt;192.168.1.1&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;br&gt;- &lt;br&gt;&lt;br&gt;192.168.1.14&lt;br&gt;&lt;/span&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="S7OoX4hOGrA3Il8_2Npv-3" vertex="1">
+          <mxGeometry x="20" y="130" width="170" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
