@@ -36,6 +36,8 @@ Hypertext Transfer Protocol (HTTP)
 
 - https://osqa-ask.wireshark.org/questions/30931/how-to-see-the-websites-name/
 
+- https://www.techtarget.com/whatis/definition/hexadecimal
+
 <br>
 
 ### Ervaren problemen
