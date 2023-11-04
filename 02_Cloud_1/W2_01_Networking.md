@@ -15,6 +15,8 @@ TCP/IP = Transmission Control Protocol/Internet Protocol
 
 - - https://nordvpn.com/nl/blog/wat-is-dhcp/
 
+- https://www.youtube.com/watch?v=CRdL1PcherM
+
 <br>
 
 ### Ervaren problemen
@@ -39,3 +41,4 @@ TCP/IP:
 4. Application Layer
 
 
+(Dit onderwerp gepresentreerd met de groep)
