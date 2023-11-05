@@ -2,7 +2,6 @@
 
 dag 3/ Week 2
 
-
 ## Key-terms
 LAN = Local Area Network <br>
 Subnetting = het opdelen van een set opeenvolgende IP-adressen (een IP-range) voor adressering op gescheiden fysieke netwerken. <br>

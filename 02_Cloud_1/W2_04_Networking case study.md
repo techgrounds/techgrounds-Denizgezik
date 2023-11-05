@@ -1,4 +1,4 @@
-#Networking Case Study
+# NETWORKING CASE STUDY
 
 Dag 4/ Week 2
 

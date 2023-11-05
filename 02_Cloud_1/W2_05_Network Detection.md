@@ -1,11 +1,11 @@
-#NETWORK DETECTION
+# NETWORK DETECTION
 
 Dag 5/ Week 2
 
 Scanning the network using nmap
 
 ## Key-terms
-nmap = Network MAPper
+nmap = Network MAPper <br>
 Is een poortscanner.
 
 
@@ -21,8 +21,6 @@ Is een poortscanner.
 I had to figure out what my ip address was within my VM first.
 
 ### Resultaat
-
-
 
 using nmap:
 
