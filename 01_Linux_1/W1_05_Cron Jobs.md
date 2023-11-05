@@ -51,3 +51,6 @@ task 3)
 to get permission:
 ![Alt text](<../00_includes/sudo syslog.png>)
 
+made a new file and started all over again:
+
+![Alt text](<@Weekly cron jobs.png>)
