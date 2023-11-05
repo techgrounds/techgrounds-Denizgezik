@@ -28,6 +28,9 @@ Een HARDWAREmatige firewall is een apart apparaat dat als firewall fungeert, zoa
 
 - https://webdock.io/en/docs/how-guides/security-guides/how-check-open-ports-your-ubuntu-server
 
+- https://opensource.com/article/18/5/how-find-ip-address-linux
+- https://stackoverflow.com/questions/41197343/how-on-the-linux-platform-can-i-find-out-what-port-my-web-browser-is-using-to-re
+
 
 
 
@@ -37,7 +40,7 @@ de standaardpagina krijg ik niet te zien.
 ### Resultaat
 
 To find out your IP Address using command:
-hostname -I
+netstat -a
 
 webserver installed on my VM:
 
