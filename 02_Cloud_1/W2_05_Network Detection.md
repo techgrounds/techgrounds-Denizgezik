@@ -1,5 +1,7 @@
 #NETWORK DETECTION
 
+Dag 5/ Week 2
+
 Scanning the network using nmap
 
 ## Key-terms
