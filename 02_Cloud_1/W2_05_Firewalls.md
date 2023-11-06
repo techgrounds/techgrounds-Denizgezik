@@ -31,7 +31,9 @@ Een HARDWAREmatige firewall is een apart apparaat dat als firewall fungeert, zoa
 - https://opensource.com/article/18/5/how-find-ip-address-linux
 - https://stackoverflow.com/questions/41197343/how-on-the-linux-platform-can-i-find-out-what-port-my-web-browser-is-using-to-re
 
+- https://www.cyberciti.biz/tips/linux-iptables-4-block-all-incoming-traffic-but-allow-ssh.html
 
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04
 
 
 ### Ervaren problemen
@@ -48,4 +50,22 @@ webserver installed on my VM:
 ![Alt text](<../00_includes/Webserver VM.png>)
 
 
+startpagina geopend:
 
+![Alt text](<../00_includes/Startpagina Ubuntu.png>)
+
+sudo ufw default deny outgoing <br>
+sudo ufw default deny incoming <br>
+sudo ufw allow ssh <br>
+sudo ufw status verbose <br>
+
+![Alt text](<../00_includes/ufw status verbose.png>)
+
+status:
+<br>
+
+![Alt text](<../00_includes/SSH status.png>)
+
+
+
+![Alt text](<../00_includes/Safari can't open the page.png>)
