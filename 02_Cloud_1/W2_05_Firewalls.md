@@ -41,8 +41,11 @@ de standaardpagina krijg ik niet te zien.
 
 ### Resultaat
 
-To find out your IP Address using command:
-netstat -a
+To find out your IP Address using command: <br>
+curl ifconfig.me
+
+![Alt text](<../00_includes/netstat -a.png>)
+
 
 webserver installed on my VM:
 

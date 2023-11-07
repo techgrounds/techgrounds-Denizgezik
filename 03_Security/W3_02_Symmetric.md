@@ -19,6 +19,8 @@ Dit maakt het mogelijk om veilig met anderen te communiceren zonder de noodzaak 
 
 - send a symmetrically encrypted message 
 
+Dag 2/ Week 3
+
 ### Gebruikte bronnen
 - https://generate-random.org/encryption-key-generator?count=1&bytes=32&cipher=aes-256-cbc&string=54321&password=
 

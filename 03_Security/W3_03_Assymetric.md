@@ -1,9 +1,9 @@
 # Assymetric Encryption
 
-[Geef een korte beschrijving van het onderwerp]
+Dag 2 / Week 3
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+
 
 ## Opdracht
 ### Gebruikte bronnen
@@ -16,7 +16,7 @@
 
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+Groepsgewijs ermee gespeeld en elkaar geholpen. Werkte erg goed.
 
 ### Resultaat
 
