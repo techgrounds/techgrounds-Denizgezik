@@ -1,5 +1,4 @@
-# Assymetric Encryption
-
+# [Onderwerp]
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
@@ -7,15 +6,10 @@
 
 ## Opdracht
 ### Gebruikte bronnen
-
-- https://www.youtube.com/watch?v=GSIDS_lvRv4
-
-- https://www.devglan.com/online-tools/rsa-encryption-decryption
+[Plaats hier de bronnen die je hebt gebruikt.]
 
 ### Ervaren problemen
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-
-![Alt text](<../00_includes/assymetric in Slack.png>)
-
+[Omschrijf hoe je weet dat je opdracht gelukt is (gebruik screenshots waar nodig).]

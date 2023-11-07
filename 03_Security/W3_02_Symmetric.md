@@ -28,6 +28,8 @@ Dit maakt het mogelijk om veilig met anderen te communiceren zonder de noodzaak 
 
 - https://www.youtube.com/watch?v=AQDCe585Lnc
 
+- https://medium.com/@pushkarkadam1994/cryptography-vigenère-cipher-e188fcb96bae
+
 
 ### Ervaren problemen
 Groepsgewijs ermee gespeeld en elkaar geholpen.

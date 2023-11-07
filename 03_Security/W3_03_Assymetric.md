@@ -1,0 +1,24 @@
+# Assymetric Encryption
+
+[Geef een korte beschrijving van het onderwerp]
+
+## Key-terms
+[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+
+## Opdracht
+### Gebruikte bronnen
+
+- https://www.youtube.com/watch?v=GSIDS_lvRv4
+
+- https://www.devglan.com/online-tools/rsa-encryption-decryption
+
+- https://travistidwell.com/jsencrypt/demo/
+
+
+### Ervaren problemen
+[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+
+### Resultaat
+
+![Alt text](<../00_includes/assymetric in Slack.png>)
+
