@@ -8,10 +8,20 @@ PKI = is een systeem van processen, technologieën en beleidsregels waarmee u ge
 ## Opdracht
 
 - Create a self-signed certificate on your VM.
+- Find the list of trusted certificate roots on your pc/laptop (bonus points if you also find it in your VM).
+
 
 ### Gebruikte bronnen
 
 - chatgpt
+
+- https://linuxize.com/post/creating-a-self-signed-ssl-certificate/
+
+- https://www.digicert.com/nl/what-is-pki
+
+- https://www.kaspersky.nl/resource-center/definitions/what-is-a-ssl-certificate
+
+
 
 
 ### Ervaren problemen
@@ -22,4 +32,11 @@ niet echt.
 
 ![Alt text](../00_includes/openssl.png)
 
+Self-Signed-Certificate:
+
 ![Alt text](../00_includes/Self-Signed-Certificate.png)
+
+Find the list of trusted certificate roots on your pc/laptop (bonus points if you also find it in your VM):
+
+![Alt text](../00_includes/:etc:ssl:certs.png)
+

@@ -21,6 +21,9 @@ Over het algemeen heeft hashing de voorkeur boven symmetrische versleuteling voo
 
 - https://rsheasby.medium.com/rainbow-tables-probably-arent-what-you-think-30f8a61ba6a5
 
+- https://www.cyberciti.biz/faq/understanding-etcshadow-file/
+
+- https://linuxize.com/post/etc-shadow-file/
 
 ### Ervaren problemen
 Ik dacht eerst dat we in de terminal een rainbow table moesten aanmaken. Verloor onnodig tijd. Voor deze opdracht moesten we gebruik maken van : https://crackstation.net
