@@ -35,6 +35,10 @@ Rainbow Table:
 
 ![Alt text](<../00_includes/Rainbow Table.png>)
 
+Bij een latere poging ontdekte ik dat er iets mis ging met copy/paste van een screenshot. Pas daarna kreeg ik het gewenste resultaat:
+
+![Alt text](<../00_includes/Rainbow Table opdracht.png>)
+
 sudo cat /etc/shadow/  :
 
 ![Alt text](<../00_includes/hashing password etc:shadow.png>)
