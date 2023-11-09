@@ -43,7 +43,7 @@ Om het RPO te berekenen, moet je weten hoe vaak back-ups worden gemaakt en hoeve
 
 <br>
 
-
+<HR>
 
 <i> - An automatic failover to a backup web server has been configured for a website. Because the backup has to be powered on first and has to pull the newest version of the website from GitHub, the process takes about 8 minutes. What is the RTO of the website?</i>
 
