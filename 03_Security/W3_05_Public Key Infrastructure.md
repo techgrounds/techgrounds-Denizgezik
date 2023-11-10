@@ -7,6 +7,7 @@ PKI = is een systeem van processen, technologieën en beleidsregels waarmee u ge
 
 X.509 = een standaardformaat dat wordt gebruikt voor het definiëren van digitale certificaten en openbare sleutelinfrastructuur (PKI). Digitale certificaten op basis van de X.509-standaard worden veel gebruikt in beveiligings- en versleutelingstoepassingen, met name in SSL/TLS-communicatie voor het beveiligen van internetverkeer.
 
+<br>
 
 ## Opdracht
 
@@ -24,8 +25,10 @@ X.509 = een standaardformaat dat wordt gebruikt voor het definiëren van digital
 
 - https://www.kaspersky.nl/resource-center/definitions/what-is-a-ssl-certificate
 
+- https://nl.wikipedia.org/wiki/Public_key_infrastructure
 
 
+<br>
 
 ### Ervaren problemen
 
