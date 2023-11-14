@@ -60,12 +60,18 @@ Monitoring my costs in the cloud:
 
 ![Alt text](<../00_includes/Monitoring Costs.png>)
 
-created a budget:
+Created a budget:
+
 ![Alt text](../00_includes/budget.png)
 
-for monthly costs:
+For monthly costs:
+
 ![Alt text](<../00_includes/monthly budget.png>)
 
-tweede poging. Nu wel email ontvangen en bevestigd:
+* As with everything AWS, billing alerts come at a marginal cost. AWS has a free tier that provides 10 alarms and 1,000 email notifications per month.
+
+<br>
+
+Tweede poging. Nu wel email ontvangen en bevestigd:
 
 ![Alt text](<../00_includes/Cloud Costs enabled.png>)
