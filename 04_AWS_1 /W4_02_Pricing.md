@@ -44,7 +44,7 @@ Voorbeelden: Gangbare OpEx-items zijn huur, nutsvoorzieningen, salarissen, kanto
 
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+Ik moest mijn cloud naar North Virginia omzetten. Ontving eerst geen e-mail met 'enabled'. Bij tweede poging uiteindelijk wel. Zie screenshot helemaal onderaan..
 
 ### Resultaat
 Pay less by using more:
@@ -65,3 +65,7 @@ created a budget:
 
 for monthly costs:
 ![Alt text](<../00_includes/monthly budget.png>)
+
+tweede poging. Nu wel email ontvangen en bevestigd:
+
+![Alt text](<../00_includes/Cloud Costs enabled.png>)
