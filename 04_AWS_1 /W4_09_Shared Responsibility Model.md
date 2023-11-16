@@ -3,7 +3,15 @@
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+
+NAT 
+
+<b>Network Address Translation (NAT) </b> is a process that enables one, unique IP address to represent an entire group of computers. In network address translation, a network device, often a router or NAT firewall, assigns a computer or computers inside a private network a public address.
+
+CIDR
+
+Classless Inter-Domain Routing (CIDR) is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations use CIDR to allocate IP addresses flexibly and efficiently in their networks.
+
 
 ## Opdracht
 ### Gebruikte bronnen
@@ -13,6 +21,7 @@
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-[Omschrijf hoe je weet dat je opdracht gelukt is (gebruik screenshots waar nodig).]
 
 
+
+![Alt text](images/image2.png.jpeg)
