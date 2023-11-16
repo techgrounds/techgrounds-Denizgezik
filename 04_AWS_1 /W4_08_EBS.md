@@ -1,17 +1,19 @@
 # EBS
 
+EBS can be seen as virtual hard drives in the cloud. They can be either root volumes (like an internal hard disk), or separate volumes (like an external hard disk). One instance of an EBS is called a <b>volume</b>. One volume can usually only be attached to one EC2 instance at a time, although for every non-root volume, you can detach it and attach it to a different EC2 instance. EBS Multi-Attach is only available in specific cases. You can create snapshots of a volume to create backups or new identical volumes. These snapshots will be stored in S3.
+
 
 ## Key-terms
 
 Amazon Elastic Block Store (Amazon EBS) is a web service that provides block level storage volumes for use with Amazon Elastic Compute Cloud instances. Amazon EBS volumes are highly available and reliable storage volumes that can be attached to any running instance and used <b>like a hard drive.</b>
 
-One instance of an EBS is called a <b>volume</b>. 
 
 With Amazon EBS, you pay only for what you use
 
 Snapshots (backups).
 
 IOPS = Input/output operations 
+
 
 ## Opdracht
 
@@ -48,6 +50,8 @@ Find your text file on the new EBS volume.
 
 - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
 
+<br>
+
 ![Alt text](<images/Snapshots diagram.png>)
 
 ### Ervaren problemen
@@ -71,6 +75,12 @@ Create a text file
 ![Alt text](<images/textfile exercise 2.png>)
 
 terminal:
+
+
+Use the <b>lsblk</b> command to view your available disk devices and their mount points (if applicable) to help you determine the correct device name to use. The output of lsblk removes the /dev/ prefix from full device paths.
+<br>
+
+
 
 ![Alt text](<images/Exercise 2.png>)
 
