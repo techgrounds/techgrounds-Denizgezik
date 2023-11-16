@@ -82,9 +82,11 @@ remove text file:
 
 ![Alt text](<images/remove textfile.png>)
 
+<br>
 
 Detach your original EBS volume.
 Attach the new volume to your EC2 and mount it.
-Find your text file on the new EBS volume.
+Find your text file on the new EBS volume:
+
 
 ![Alt text](<images/Text File in New Volume .png>)
