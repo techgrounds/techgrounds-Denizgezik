@@ -53,7 +53,7 @@ Rename this route table to Private Route Table:
 
 ![Alt text](<images/Private Route Table.png>)
 
-I had to ad the NAT gateway afterwords:
+I had to add the NAT gateway afterwords:
 
 ![Alt text](<images/Nat Gateway added.png>)
 
