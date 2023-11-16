@@ -1,0 +1,90 @@
+# EBS
+
+
+## Key-terms
+
+Amazon Elastic Block Store (Amazon EBS) is a web service that provides block level storage volumes for use with Amazon Elastic Compute Cloud instances. Amazon EBS volumes are highly available and reliable storage volumes that can be attached to any running instance and used <b>like a hard drive.</b>
+
+One instance of an EBS is called a <b>volume</b>. 
+
+With Amazon EBS, you pay only for what you use
+
+Snapshots (backups).
+
+IOPS = Input/output operations 
+
+## Opdracht
+
+opdracht 1:
+
+Navigate to the EC2 menu.
+Create a t2.micro Amazon Linux 2 machine with all the default settings.
+Create a new EBS volume with the following requirements:
+Volume type: General Purpose SSD (gp3)
+Size: 1 GiB
+Availability Zone: same as your EC2
+Wait for its state to be available.
+
+opdracht 2:
+
+Attach your new EBS volume to your EC2 instance.
+Connect to your EC2 instance using SSH.
+Mount the EBS volume on your instance.
+Create a text file and write it to the mounted EBS volume.
+
+opdracht 3:
+
+Create a snapshot of your EBS volume.
+Remove the text file from your original EBS volume.
+Create a new volume using your snapshot.
+Detach your original EBS volume.
+Attach the new volume to your EC2 and mount it.
+Find your text file on the new EBS volume.
+
+
+### Gebruikte bronnen
+
+- https://www.youtube.com/watch?v=DS1nF1WBGKk
+
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
+
+![Alt text](<images/Snapshots diagram.png>)
+
+### Ervaren problemen
+It was quite a challenge all these assignments, but i made it. 
+Had a'broken pipe' in my terminal and started all over again.
+Slowly by slowy i started to understand what i was doing..
+
+### Resultaat
+
+Exercise 1:
+create a new EBS volume 
+
+![Alt text](<images/EBS Exercise 1 .png>)
+
+Exercise 2:
+
+
+
+Create a text file
+
+![Alt text](<images/textfile exercise 2.png>)
+
+terminal:
+
+![Alt text](<images/Exercise 2.png>)
+
+Exercise 3:
+
+![Alt text](<images/create a snapshot.png>)
+
+remove text file:
+
+![Alt text](<images/remove textfile.png>)
+
+
+Detach your original EBS volume.
+Attach the new volume to your EC2 and mount it.
+Find your text file on the new EBS volume.
+
+![Alt text](<images/Text File in New Volume .png>)
