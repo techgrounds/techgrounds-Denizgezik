@@ -78,6 +78,8 @@ terminal:
 
 
 Use the <b>lsblk</b> command to view your available disk devices and their mount points (if applicable) to help you determine the correct device name to use. The output of lsblk removes the /dev/ prefix from full device paths.
+
+lsblk = "list block devices"
 <br>
 
 
