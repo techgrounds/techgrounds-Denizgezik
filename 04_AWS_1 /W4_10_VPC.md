@@ -62,3 +62,9 @@ I had to ad the NAT gateway afterwords:
 
 
 ![Alt text](<images/2 private subnets explicitly associated.png>)
+
+- View the other route table for Lab VPC. It should have an entry for the internet gateway. Rename this route table to Public Route Table.
+- Explicitly associate the public route table to your two public subnets:
+
+
+![Alt text](<images/Public Route Table.png>)
