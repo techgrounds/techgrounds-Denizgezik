@@ -21,6 +21,9 @@ IgW allows both inbound and outbound access to the internet whereas the NAT Gate
 
 - https://docs.axway.com/bundle/SecureTransport_54_on_AWS_InstallationGuide_allOS_en_HTML5/page/Content/AWS/securitygroups/st_nat_gateway_subnet_routing.htm
 
+- https://cidr.xyz
+
+
 ### Ervaren problemen
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
