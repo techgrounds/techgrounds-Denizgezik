@@ -64,6 +64,8 @@ Scaling policy: Target tracking with a target of 60% average CPU utilisation: <b
 
 ![Alt text](<05_includes/Load Balancer.png>)
 
+![Alt text](<05_includes/LB - HTTP port 80.png>)
+
 ![Alt text](05_includes/LabTargetGroup.png)
 
 
