@@ -72,9 +72,13 @@ Horizontal scaling.
 
 - https://www.youtube.com/watch?v=0R4s1Al0F1c
 
+RDS tutorials:
+
 - https://www.youtube.com/watch?v=ylmwaDUMV9c
 
-beanstalk aws tutorial:
+- https://www.youtube.com/watch?v=Qx1Btn5oroA
+
+Beanstalk aws tutorial:
 
 - https://www.youtube.com/watch?v=2BoVhej0QVI
 
@@ -89,7 +93,7 @@ none
 
 EFS exercise:
 
-![Alt text](<05_includes/EFS test.png>)
+![Alt text](<05_includes/EFS File systems.png>)
 
 - sudo yum install efs:
 
@@ -99,12 +103,22 @@ EFS exercise:
 
 - mkdir efs:
 
-![Alt text](<05_includes/mkdir efs.png>)
+
+![Alt text](<05_includes/sudo mount.png>)
+
 
 
 RDS exercise:
 
+![Alt text](<05_includes/RDS test.png>)
+
+RDS estimated monthly costs:
+
+![Alt text](<05_includes/RDS costs.png>)
 
 Elastic Beanstalk exercise:
 
 ![Alt text](<05_includes/ELastic Beanstalk.png>)
+
+
+
