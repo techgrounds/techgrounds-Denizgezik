@@ -16,7 +16,13 @@ Sustainability
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+
+- https://www.youtube.com/watch?v=MpDJ6TCWKjk
+
+- https://www.aws.ps/aws-well-architected-framework/
+
+- https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html
+
 
 ### Ervaren problemen
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
@@ -68,3 +74,7 @@ AWS biedt de Well-Architected Tool, een self-service tool waarmee gebruikers hun
 
 AWS biedt whitepapers en documentatie die dieper ingaan op elke pijler en aanvullende begeleiding en voorbeelden bieden.
 Door het Well-Architected Framework te volgen, kunnen organisaties ervoor zorgen dat hun AWS-workloads in lijn zijn met best practices, wat leidt tot efficiëntere, veiligere en betrouwbaardere systemen in de cloud.
+
+
+![Alt text](05_includes/aws-five-pillars.png)
+

@@ -34,13 +34,13 @@ Exercies 1:
 
 - Allocate Elastic IP:
 
-![Alt text](<images/Allocate Elastic IP.png>)
+![Alt text](<04_includes/Allocate Elastic IP.png>)
 
 
 
 - Create a new VPC:
 
-![Alt text](<images/Lab VPC.png>)
+![Alt text](<04_includes/Lab VPC.png>)
 
 Exercise 2:
 
@@ -53,7 +53,7 @@ Exercise 2:
 
 Private Route Table:
 
-![Alt text](<images/Private Route Table.png>)
+![Alt text](<04_includes/Private Route Table.png>)
 
 
 - View the other route table for Lab VPC. It should have an entry for the internet gateway. Rename this route table to Public Route Table.
@@ -61,13 +61,15 @@ Private Route Table:
 
 Public Route Table:
 
-![Alt text](<images/Public Route Table.png>)
+![Alt text](<04_includes/Private Route Table.png>)
+
 
 
 Exercise 3, Inbound & Outbound rule:
 
-![Alt text](<images/Inbound & Outbound rules.png>)
+![Alt text](<04_includes/Inbound & Outbound rules.png>)
+
 
 Exercise 4, final result:
 
-![Alt text](<images/Exercise 4 Test Page.png>)
+![Alt text](<04_includes/Exercise 4 Test Page.png>)

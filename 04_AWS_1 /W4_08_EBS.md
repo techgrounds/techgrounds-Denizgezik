@@ -52,7 +52,7 @@ Find your text file on the new EBS volume.
 
 <br>
 
-![Alt text](<images/Snapshots diagram.png>)
+![Alt text](<04_includes/Snapshots diagram.png>)
 
 ### Ervaren problemen
 It was quite a challenge all these assignments, but i made it. 
@@ -64,7 +64,7 @@ Slowly by slowy i started to understand what i was doing..
 Exercise 1:
 create a new EBS volume 
 
-![Alt text](<images/EBS Exercise 1 .png>)
+![Alt text](<04_includes/EBS Exercise 1 .png>)
 
 Exercise 2:
 
@@ -72,7 +72,7 @@ Exercise 2:
 
 Create a text file
 
-![Alt text](<images/textfile exercise 2.png>)
+![Alt text](<04_includes/textfile exercise 2.png>)
 
 terminal:
 
@@ -83,16 +83,16 @@ lsblk = "list block devices"
 <br>
 
 
+![Alt text](<04_includes/Exercise 2.png>)
 
-![Alt text](<images/Exercise 2.png>)
 
 Exercise 3:
 
-![Alt text](<images/create a snapshot.png>)
+![Alt text](<04_includes/create a snapshot.png>)
 
 remove text file:
 
-![Alt text](<images/remove textfile.png>)
+![Alt text](<04_includes/remove textfile.png>)
 
 <br>
 
@@ -100,5 +100,4 @@ Detach your original EBS volume.
 Attach the new volume to your EC2 and mount it.
 Find your text file on the new EBS volume:
 
-
-![Alt text](<images/Text File in New Volume .png>)
+![Alt text](<04_includes/Text File in New Volume .png>)

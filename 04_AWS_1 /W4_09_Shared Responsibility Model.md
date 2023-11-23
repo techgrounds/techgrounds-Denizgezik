@@ -24,4 +24,4 @@ Classless Inter-Domain Routing (CIDR) is an IP address allocation method that im
 
 
 
-![Alt text](images/image2.png.jpeg)
+![Alt text](04_includes/image2.png.jpeg)
