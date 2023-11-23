@@ -47,9 +47,11 @@ Integrates nicely with other AWS Services. <br>
 
 Horizontal scaling. 
 
+![Alt text](05_includes/RDS.png)
 
 - Elastic Beanstalk
 
+![Alt text](<Screenshot 2023-11-23 at 14.34.01.png>)
 
 
 - CloudFront
@@ -72,6 +74,10 @@ Horizontal scaling.
 
 - https://www.youtube.com/watch?v=ylmwaDUMV9c
 
+beanstalk aws tutorial:
+
+- https://www.youtube.com/watch?v=2BoVhej0QVI
+
 
 ### Ervaren problemen
 none
@@ -80,3 +86,25 @@ none
 
 <b> “Good intentions never work, you need good mechanisms to make anything happen” — Jeff Bezos. </b>
 
+
+EFS exercise:
+
+![Alt text](<05_includes/EFS test.png>)
+
+- sudo yum install efs:
+
+
+![Alt text](<05_includes/sudo yum install.png>)
+
+
+- mkdir efs:
+
+![Alt text](<05_includes/mkdir efs.png>)
+
+
+RDS exercise:
+
+
+Elastic Beanstalk exercise:
+
+![Alt text](<05_includes/ELastic Beanstalk.png>)
