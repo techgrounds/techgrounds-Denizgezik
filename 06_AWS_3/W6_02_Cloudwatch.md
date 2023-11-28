@@ -36,6 +36,11 @@ Users can access Cloudwatch functions through:
 
 ### Resultaat
 
-Cloudwatch monitors :
+What are the services that can be monitored using Cloudwatch:
 
 ![Alt text](<06_includes/Cloudwatch monitoring.png>)
+
+
+Setting up an alarm:
+
+![Alt text](<06_includes/Cloudwatch alarm.png>)
