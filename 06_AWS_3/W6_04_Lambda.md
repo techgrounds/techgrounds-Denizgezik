@@ -1,9 +1,15 @@
 
-# [Onderwerp]
-[Geef een korte beschrijving van het onderwerp]
+# AWS Lambda 
+
+Play around with.
 
 ## Key-terms
+
 With Lambda any event can trigger your function making it easy to build applications that respond quickly to new information.
+
+- The meaning of Serverless:
+
+![Alt text](06_includes/Serverless.png)
 
 ## Opdracht
 ### Gebruikte bronnen
