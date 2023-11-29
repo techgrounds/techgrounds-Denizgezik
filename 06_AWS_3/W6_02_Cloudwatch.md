@@ -30,9 +30,11 @@ Users can access Cloudwatch functions through:
 
 ![Alt text](06_includes/Cloudwatch.png)
 
+- https://www.youtube.com/watch?v=lHWrAAzoxJA
+
 
 ### Ervaren problemen
-
+None. Just that with Cloudwatch you are a bit lost what exactly to practice other than setting up an alarm.
 
 ### Resultaat
 
