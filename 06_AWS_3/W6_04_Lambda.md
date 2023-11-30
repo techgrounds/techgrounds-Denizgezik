@@ -1,7 +1,17 @@
 
 # AWS Lambda 
 
-Play around with.
+
+Welk probleem lost X op? <br>
+Welke key termen horen bij X? <br>
+Hoe past X / vervangt X in een on-premises setting? <br>
+Hoe kan ik X combineren met andere diensten? <br>
+Wat is het verschil tussen X en andere gelijksoortige diensten? <br>
+
+Een handige lijst van taken die je praktisch moet kunnen: <br>
+Waar kan ik deze dienst vinden in de console? <br>
+Hoe zet ik deze dienst aan? <br>
+Hoe kan ik deze dienst koppelen aan andere resources? <br>
 
 ## Key-terms
 
@@ -20,12 +30,13 @@ With Lambda any event can trigger your function making it easy to build applicat
 
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+
+Lambda function added. Don't know exactly if the blueprint that i have used in my assigment really worked well..
 
 ### Resultaat
 
 
-- Just used as an example for this aasignment:
+- Just used this Lambda blueprint as an example for this assignment:
 
 ![Alt text](<06_includes/lambda blueprint.png>)
 

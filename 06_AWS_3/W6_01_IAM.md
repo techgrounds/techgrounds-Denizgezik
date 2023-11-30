@@ -1,5 +1,16 @@
 # Doe praktische ervaring op met: IAM
 
+Welk probleem lost X op? <br>
+Welke key termen horen bij X? <br>
+Hoe past X / vervangt X in een on-premises setting? <br>
+Hoe kan ik X combineren met andere diensten? <br>
+Wat is het verschil tussen X en andere gelijksoortige diensten? <br>
+
+Een handige lijst van taken die je praktisch moet kunnen: <br>
+Waar kan ik deze dienst vinden in de console? <br>
+Hoe zet ik deze dienst aan? <br>
+Hoe kan ik deze dienst koppelen aan andere resources? <br>
+
 ## Key-terms
 
 IAM = stands for Identity and Access Management. AWS Identity and Access Management (IAM) is a service that helps you securely control access to AWS resources. It allows you to manage users, groups, and roles and define their permissions to access or perform actions on AWS services and resources.
