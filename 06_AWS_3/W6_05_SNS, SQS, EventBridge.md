@@ -1,4 +1,4 @@
-# SNS, SQS, Event Bridge
+# SNS, SQS, EventBridge
 
 Welk probleem lost X op? <br>
 Welke key termen horen bij X? <br>
@@ -63,12 +63,11 @@ Has 4 parameters:
 - Subscribe <br>
 <br>
 
-<b>EVENT BRIDGE</b>
+<b>EVENTBRIDGE</b>
 
 It allows to have <b>One to Many</b> kind of communication. 
-But the Many here is restricted to 5!
-
-
+But the Many here is restricted to 5! <br>
+So for a specific rule you have a maximun of 5 targets.
 
 It also allows to filter messages, defined rules so that we can based on the parameters or the conditions, within the incoming message, we can decide what should be the destination target for that message
 (makes it very suitable for SaaS, Application Integrations e.g. MongoDB Atlas).
@@ -78,6 +77,14 @@ It has 4 parameters:
 - Events <br>
 - Rules <br>
 - Targets <br>
+
+Message Bus = basically a container for your events.
+Events = is like a pending or shipped or delivery event. Events can be constructed either by an application such as order service can also be emmitted by a aws service itsel like ec2 for example.
+Rules = basically just match incoming events and sends them to their corresponding targets for processing.
+Targets = are your destination endpoints. Subscribers 
+
+
+Free integration with third-party services like Shopify, PagerDuty, Datadog. 
 
 IN GENERAL:
 
@@ -97,7 +104,7 @@ Decoupling allows for better interoperability between different services or syst
 
 <br>
 
-SNS, SQS, Event Bridge: 
+SNS, SQS, EventBridge: 
 
 BASICALLY THESE ARE THE THREE SERVICES THAT ARE AVAILABLE AWS WHICH ONE WOULD USE FOR <b> DECOUPLING OF APPLICATIONS </b> AND <b>TO BUILT AN ENTERPRISE READY SCALABLE ECOSYSTEM</b>. 
 
@@ -115,12 +122,19 @@ BASICALLY THESE ARE THE THREE SERVICES THAT ARE AVAILABLE AWS WHICH ONE WOULD US
 
 ### Resultaat
 
-Chatgpt:
+
+- Chatgpt:
 
 <b>"Fan-out"</b> is a term commonly used in distributed systems and messaging architectures to describe the process of broadcasting a message to multiple consumers or downstream components. It's the opposite of "fan-in," where multiple sources send messages to a single destination.
 
 In the context of messaging systems like Amazon Simple Queue Service (SQS) or publish-subscribe patterns, fan-out typically refers to the ability to send a message from one producer to multiple consumers or subscribers.
 
-SNS :
+
+- SNS :
 
 ![Alt text](06_includes/SNS.png)
+
+
+- When to use what?
+
+![Alt text](<06_includes/When to use what.png>)
