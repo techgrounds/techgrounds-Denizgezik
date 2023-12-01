@@ -17,24 +17,9 @@ QUEUE:
 
 Een <b>QUEUE</b> (Engels voor wachtrij) is in de informatica een datastructuur voor de opslag van een wisselend aantal elementen waarbij geldt dat het element dat het eerst werd toegevoegd het eerst wordt verwijderd (FIFO).
 
-De operaties op een queue zijn:
-
-enqueue (of put): een element wordt in de queue geplaatst
-dequeue (of get): een element wordt uit de queue gehaald
-empty: test of de queue leeg is
-Soms wordt ook wel ondersteund:
-
-size: retourneert het aantal elementen in de queue
-Daarbij kunnen de volgende fouten optreden:
-
-underflow: een poging om een element uit een lege queue te halen.
-overflow: een poging om een element aan een volle queue toe te voegen. Dit kan alleen als de queue een begrensde grootte heeft.
-
 API:
 
 Een <b>API</b>, of een Application Programming Interface, wordt gebruikt om op een geformaliseerde manier gegevens uit te wisselen tussen apps. Veel voorzieningen bieden openbare API's waarmee iedereen inhoud naar de voorziening kan sturen en van de voorziening kan ontvangen.
-
-
 
 
 <b>SQS = Simple Queue Service.</b>
@@ -78,9 +63,14 @@ It has 4 parameters:
 - Rules <br>
 - Targets <br>
 
-Message Bus = basically a container for your events.
-Events = is like a pending or shipped or delivery event. Events can be constructed either by an application such as order service can also be emmitted by a aws service itsel like ec2 for example.
-Rules = basically just match incoming events and sends them to their corresponding targets for processing.
+Message Bus = basically a container for your events. <br>
+
+Events = an event is a record of an action that has happened in the past: in this context it is represented as a Json object that contains data from the event and metadata about the event.
+Events can be constructed either by an application such as order service can also be emmitted by a aws service itsel like ec2 for example.<br>
+Event is like a pending or shipped or delivery event. <br>
+
+Rules = basically just match incoming events and sends them to their corresponding targets for processing.<br>
+
 Targets = are your destination endpoints. Subscribers 
 
 
@@ -138,3 +128,8 @@ In the context of messaging systems like Amazon Simple Queue Service (SQS) or pu
 - When to use what?
 
 ![Alt text](<06_includes/When to use what.png>)
+
+Event Bus:
+
+![Alt text](<06_includes/Event Bus.png>)
+
