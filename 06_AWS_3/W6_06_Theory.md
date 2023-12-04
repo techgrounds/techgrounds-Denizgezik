@@ -52,3 +52,4 @@ Lots of theory.
 
 
 
+![Alt text](<../05_AWS_2/05_includes/Cloudtrail versus Cloudwatch.png>)
