@@ -1,15 +1,39 @@
-# [Onderwerp]
-[Geef een korte beschrijving van het onderwerp]
+# Variables
+
+Exercise 1:
+
+- Create a new script. <br>
+- Create two variables x and y. Assign a numerical value to both variables. <br>
+- Print the values of x and y. <br>
+- Create a third variable named z. The value of z should be the sum of x and y. <br>
+- Print the value of z. <br>
+
+Exercise 2: <br>
+
+- Create a new script. <br>
+- Create a variable called name. The value of name should be your name. <br>
+- Print the text “Hello, YOURNAME!”. Use the variable name in the print statement. <br>
+
+Exercise 3: <br>
+
+- Create a new script. <br>
+- Create a variable and assign a value to it. <br>
+- Print the text “Value 1: VALUE1”. <br>
+- Change the value of that same variable. <br>
+- Print the text “Value 2: VALUE2”. <br>
+- Change the value of that same variable. <br>
+- Print the text “Value 3: VALUE3”. <br>
+
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+none
 
 ### Resultaat
 

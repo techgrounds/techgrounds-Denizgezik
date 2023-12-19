@@ -1,5 +1,24 @@
-# [Onderwerp]
-[Geef een korte beschrijving van het onderwerp]
+# Data types and comments
+
+Exercise 1:
+
+- Create a new script. <br>
+
+- Copy the code below into your script.<br>
+a = 'int'<br>
+b = 7<br>
+c = False<br>
+d = "18.5"<br>
+- Determine the data types of all four variables ( a, b, c, d) using a built-in function.<br>
+- Make a new variable x and give it the value b + d. Print the value of x. This will raise an error. Fix it so that print(x) prints a float.<br>
+- Write a comment above every line of code that tells the reader what is going on in your script.<br>
+
+
+Exercise 2:
+
+- Create a new script.<br>
+- Use the input() function to get input from the user. Store that input in a variable.<br>
+- Find out what data type the output of input() is. See if it is different for different kinds of input (numbers, words, etc.).<br>
 
 ## Key-terms
 
