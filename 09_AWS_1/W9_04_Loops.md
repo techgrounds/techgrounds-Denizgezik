@@ -1,4 +1,5 @@
-# [Onderwerp]
+# LOOPS
+
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
@@ -12,4 +13,23 @@
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-[Omschrijf hoe je weet dat je opdracht gelukt is (gebruik screenshots waar nodig).]
+
+Exercise 1:
+
+
+![Alt text](<09_includes/Loops 1.png>)
+
+x=x+1 is also written like this:  x += 1
+
+![Alt text](<09_includes/exercise 1 (in short).png>)
+
+
+Exercise 2:
+
+range = 10
+
+![Alt text](<09_includes/range (10).png>)
+
+range = 50 
+
+![Alt text](09_includes/range(50).png)
