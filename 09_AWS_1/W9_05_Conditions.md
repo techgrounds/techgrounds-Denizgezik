@@ -12,4 +12,11 @@
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-[Omschrijf hoe je weet dat je opdracht gelukt is (gebruik screenshots waar nodig).]
+
+- <b>Exercise 1: </b>
+
+![Alt text](<09_includes/Conditions Exercise 1.png>)
+
+- <b>Exercise 2: </b>
+
+![Alt text](<09_includes/Conditions Exercise 2.png>)

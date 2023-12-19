@@ -14,7 +14,7 @@
 
 ### Resultaat
 
-Exercise 1:
+- <b>Exercise 1:</b>
 
 
 ![Alt text](<09_includes/Loops 1.png>)
@@ -24,7 +24,7 @@ x=x+1 is also written like this:  x += 1
 ![Alt text](<09_includes/exercise 1 (in short).png>)
 
 
-Exercise 2:
+- <b>Exercise 2: </b>
 
 range = 10
 
@@ -34,6 +34,6 @@ range = 50
 
 ![Alt text](09_includes/range(50).png)
 
-Exercise 3:
+- <b>Exercise 3:</b>
 
 ![Alt text](<09_includes/Loops Exercise 3.png>)
