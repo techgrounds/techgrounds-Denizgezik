@@ -33,3 +33,7 @@ range = 10
 range = 50 
 
 ![Alt text](09_includes/range(50).png)
+
+Exercise 3:
+
+![Alt text](<09_includes/Loops Exercise 3.png>)
