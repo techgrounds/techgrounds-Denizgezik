@@ -50,3 +50,8 @@ None
 - Exercise 2.2:
 
 ![Alt text](<09_includes/Key-value exercise 2.2.png>)
+
+
+- Extra Exercise 2.2:
+
+![Alt text](<09_includes/Key-value extra exercise 2.2.png>)
