@@ -1,16 +1,27 @@
 # Conditions
 
-[Geef een korte beschrijving van het onderwerp]
+- Exercise 1:
+
+Create a new script.<br>
+Use the input() function to ask the user of your script for their name. If the name they input is your name, print a personalized welcome message. If not, print a different personalized message.<br>
+
+- Exercise 2:
+
+Create a new script.<br>
+Ask the user of your script for a number. Give them a response based on whether the number is higher than, lower than, or equal to 100.<br>
+
+Make the game repeat until the user inputs 100.<br>
+
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+none
 
 ### Resultaat
 

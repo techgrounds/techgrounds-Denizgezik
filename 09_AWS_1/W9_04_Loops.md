@@ -1,16 +1,40 @@
 # LOOPS
 
-[Geef een korte beschrijving van het onderwerp]
+- Exercise 1:
+
+Create a new script.<br>
+Create a variable x and give it the value 0.<br>
+Use a while loop to print the value of x in every iteration of the loop. After printing, the value of x should increase by 1. The loop should run as long as x is smaller than or equal to 10.<br>
+
+ - Exercise 2:
+
+Create a new script.<br>
+Copy the code below into your script.<br>
+for i in range(10):<br>
+
+ do something here<br>
+
+Print the value of i in the for loop. You did not manually assign a value to i. Figure out how its value is determined.<br>
+Add a variable x with value 5 at the top of your script.<br>
+Using the for loop, print the value of x multiplied by the value of i, for up to 50 iterations.<br>
+
+- Exercise 3:
+
+Create a new script.<br>
+Copy the array below into your script.<br>
+arr = ["Shikha", "Casper", "Bart", "Ruben", "Ulviye"]<br>
+
+Use a for loop to loop over the array. Print every name individually.<br>
+
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+none
 
 ### Resultaat
 
