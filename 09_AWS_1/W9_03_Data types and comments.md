@@ -49,15 +49,17 @@ floating_point = 18.5 <br>
 
 ### Resultaat
 
+- Exercise 1:
+
 error version:
 
-![Alt text](fixed.png)
+![Alt text](09_includes/error.png)
 
 fixed (including float) version:
 
-![Alt text](error.png)
+![Alt text](09_includes/fixed.png)
 
 
-Exercise 2:
+- Exercise 2:
 
 ![Alt text](<09_includes/Data types Exercise 2.png>)
