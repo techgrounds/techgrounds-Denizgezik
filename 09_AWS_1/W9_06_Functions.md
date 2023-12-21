@@ -35,6 +35,7 @@ Write the custom function avg() so that it returns the average of the given para
 ## Opdracht
 ### Gebruikte bronnen
 
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
 none

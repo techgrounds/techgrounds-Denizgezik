@@ -42,10 +42,11 @@ floating_point = 18.5 <br>
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+none
 
 ### Resultaat
 

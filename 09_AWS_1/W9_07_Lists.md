@@ -24,6 +24,7 @@ The first result above is created by adding 9 and 80. The second result is creat
 ## Opdracht
 ### Gebruikte bronnen
 
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
 None

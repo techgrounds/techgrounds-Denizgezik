@@ -19,6 +19,7 @@ Make the game repeat until the user inputs 100.<br>
 ## Opdracht
 ### Gebruikte bronnen
 
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
 none

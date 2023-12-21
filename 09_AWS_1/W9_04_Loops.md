@@ -32,6 +32,7 @@ Use a for loop to loop over the array. Print every name individually.<br>
 ## Opdracht
 ### Gebruikte bronnen
 
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
 none

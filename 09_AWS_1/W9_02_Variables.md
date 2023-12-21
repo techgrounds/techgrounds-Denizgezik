@@ -31,6 +31,7 @@ Exercise 3: <br>
 ## Opdracht
 ### Gebruikte bronnen
 
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
 none

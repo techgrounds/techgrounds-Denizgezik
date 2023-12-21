@@ -30,7 +30,7 @@ Key-value pairs are a general concept you will definitely encounter. Some exampl
 
 ## Opdracht
 ### Gebruikte bronnen
-
+- ChatGPT & Bard (Google)
 
 ### Ervaren problemen
 None
