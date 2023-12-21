@@ -28,3 +28,8 @@ none
 
 ![Alt text](<09_includes/Number guessing.png>)
 
+<br>
+
+- tweede poging, in één keer goed gegokt :)  :
+
+![Alt text](<09_includes/in één keer goed gegokt!.png>)
