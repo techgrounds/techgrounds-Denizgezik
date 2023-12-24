@@ -22,3 +22,8 @@ Te moeilijk anders.
 - Tic Tac Toe:
 
 ![Alt text](../09_AWS_1/09_includes/Tic-tac-toe.png)
+
+
+Extra extra, read all about it! :
+
+![Alt text](<09_includes/in 1 keer goed geraden!.png>)
