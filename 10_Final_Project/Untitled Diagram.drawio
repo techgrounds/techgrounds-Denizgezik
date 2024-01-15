@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-01-15T14:02:39.610Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="if4Su7SYbkGziPQsfTr4" version="22.1.18" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-15T14:06:30.822Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="vrEbttRIJnwLj_cqQ1kR" version="22.1.18" type="github">
   <diagram name="Page-1" id="5XklxeWlMFFwoa9RzVnv">
     <mxGraphModel dx="1164" dy="701" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -91,6 +91,21 @@
         <mxCell id="lb1Xg6BuO0H29fVkTh3z-5" value="Private subnets" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#00A4A6;fillColor=#E6F6F7;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=0;" vertex="1" parent="1">
           <mxGeometry x="430" y="710" width="250" height="320" as="geometry" />
         </mxCell>
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.4.0/24&lt;br&gt;&lt;br&gt;(Database)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-28">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" vertex="1" parent="lb1Xg6BuO0H29fVkTh3z-5">
+            <mxGeometry x="35.77999999999997" y="40" width="170" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.5.0/24&lt;br&gt;&lt;br&gt;(App Server)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-29">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" vertex="1" parent="lb1Xg6BuO0H29fVkTh3z-5">
+            <mxGeometry x="35.77999999999997" y="130" width="170" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.6.0/24&lt;br&gt;&lt;br&gt;(Internal)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-30">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" vertex="1" parent="lb1Xg6BuO0H29fVkTh3z-5">
+            <mxGeometry x="34" y="230" width="170" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
         <mxCell id="lb1Xg6BuO0H29fVkTh3z-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lb1Xg6BuO0H29fVkTh3z-19">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="480" y="635" as="targetPoint" />
@@ -101,8 +116,11 @@
             <mxPoint x="480" y="635" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="lb1Xg6BuO0H29fVkTh3z-19" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;10.0.0.16&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="535" y="620" width="100" height="30" as="geometry" />
+        <mxCell id="lb1Xg6BuO0H29fVkTh3z-19" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;10.0.0.0/16&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="530" y="620" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lb1Xg6BuO0H29fVkTh3z-27" value="(IGW)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="454" y="1110" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
