@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-01-15T15:40:57.486Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="spszUxA9P_cUGkYuUclr" version="22.1.18" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-15T16:38:50.112Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="O7g11dISUokinz3q-byM" version="22.1.18" type="github">
   <diagram name="Page-1" id="5XklxeWlMFFwoa9RzVnv">
     <mxGraphModel dx="1170" dy="584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -100,17 +100,17 @@
         <mxCell id="lb1Xg6BuO0H29fVkTh3z-4" value="Public subnets" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#7AA116;fillColor=#F2F6E8;verticalAlign=top;align=left;spacingLeft=30;fontColor=#248814;dashed=0;" parent="1" vertex="1">
           <mxGeometry x="150" y="710" width="250" height="320" as="geometry" />
         </mxCell>
-        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.1.0/24&lt;br&gt;&lt;br&gt;(Admin /Management)&lt;br&gt;EIP&lt;br&gt;&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-11">
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.10.11.0/24&lt;br&gt;&lt;br&gt;(Admin /Management)&lt;br&gt;EIP&lt;br&gt;&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-11">
           <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" parent="lb1Xg6BuO0H29fVkTh3z-4" vertex="1">
             <mxGeometry x="40" y="30" width="170" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.2.0/24&lt;br&gt;&lt;br&gt;&amp;nbsp;(Web Server)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-12">
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.10.12.0/24&lt;br&gt;&lt;br&gt;&amp;nbsp;(Web Server)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-12">
           <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" parent="lb1Xg6BuO0H29fVkTh3z-4" vertex="1">
             <mxGeometry x="40" y="130" width="170" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.3.0/24&lt;br&gt;&lt;br&gt;&amp;nbsp;(Another Web)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-18">
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.10.13.0/24&lt;br&gt;&lt;br&gt;&amp;nbsp;(Another Web)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-18">
           <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" parent="lb1Xg6BuO0H29fVkTh3z-4" vertex="1">
             <mxGeometry x="40" y="230" width="170" height="80" as="geometry" />
           </mxCell>
@@ -118,17 +118,17 @@
         <mxCell id="lb1Xg6BuO0H29fVkTh3z-5" value="Private subnets" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;grStroke=0;strokeColor=#00A4A6;fillColor=#E6F6F7;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=0;" parent="1" vertex="1">
           <mxGeometry x="430" y="710" width="250" height="320" as="geometry" />
         </mxCell>
-        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.4.0/24&lt;br&gt;&lt;br&gt;(Database)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-28">
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.10.14.0/24&lt;br&gt;&lt;br&gt;(Database)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-28">
           <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" parent="lb1Xg6BuO0H29fVkTh3z-5" vertex="1">
             <mxGeometry x="35.77999999999997" y="40" width="170" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.5.0/24&lt;br&gt;&lt;br&gt;(App Server)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-29">
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.10.15.0/24&lt;br&gt;&lt;br&gt;(App Server)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-29">
           <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" parent="lb1Xg6BuO0H29fVkTh3z-5" vertex="1">
             <mxGeometry x="35.77999999999997" y="130" width="170" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.0.6.0/24&lt;br&gt;&lt;br&gt;(Internal)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-30">
+        <UserObject label="&lt;font style=&quot;font-size: 16px;&quot;&gt;10.10.16.0/24&lt;br&gt;&lt;br&gt;(Internal)&lt;/font&gt;" treeRoot="1" id="lb1Xg6BuO0H29fVkTh3z-30">
           <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};" parent="lb1Xg6BuO0H29fVkTh3z-5" vertex="1">
             <mxGeometry x="34" y="230" width="170" height="80" as="geometry" />
           </mxCell>
@@ -143,8 +143,8 @@
             <mxPoint x="480" y="635" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="lb1Xg6BuO0H29fVkTh3z-19" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;10.0.0.0/16&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="530" y="620" width="110" height="30" as="geometry" />
+        <mxCell id="lb1Xg6BuO0H29fVkTh3z-19" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;10.10.10.0/24&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="520" y="620" width="130" height="30" as="geometry" />
         </mxCell>
         <mxCell id="lb1Xg6BuO0H29fVkTh3z-27" value="(IGW)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="454" y="1110" width="60" height="30" as="geometry" />
