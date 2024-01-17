@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-01-16T20:41:57.022Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="WuO6B00lHj5Aq2s-e9SB" version="22.1.18" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-17T09:36:17.419Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="gf6U77f2JQSjlNDN1Yft" version="22.1.18" type="github">
   <diagram name="Page-1" id="5XklxeWlMFFwoa9RzVnv">
     <mxGraphModel dx="1170" dy="584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -72,8 +72,11 @@
         <mxCell id="qbqr4nxyAUbNtmsnSyhl-4" value="Internet&#xa;gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;" vertex="1" parent="bnf0HkIYAUzheDiGuUiw-40">
           <mxGeometry x="-20" y="201" width="42" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="qbqr4nxyAUbNtmsnSyhl-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="bnf0HkIYAUzheDiGuUiw-40" source="qbqr4nxyAUbNtmsnSyhl-16" target="qbqr4nxyAUbNtmsnSyhl-4">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="qbqr4nxyAUbNtmsnSyhl-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="bnf0HkIYAUzheDiGuUiw-40">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="111.5" y="180" as="sourcePoint" />
+            <mxPoint x="11.500000000000227" y="201.0000000000001" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="bnf0HkIYAUzheDiGuUiw-47" value="Subnet:ACL" style="shape=mxgraph.ibm.box;prType=subnet;fontStyle=0;verticalAlign=top;align=left;spacingLeft=32;spacingTop=4;fillColor=#E6F0E2;rounded=0;whiteSpace=wrap;html=1;strokeColor=#00882B;strokeWidth=1;dashed=0;container=1;spacing=-4;collapsible=0;expand=0;recursiveResize=0;" parent="bnf0HkIYAUzheDiGuUiw-2" vertex="1">
           <mxGeometry x="452.5" y="140" width="270" height="270" as="geometry" />
