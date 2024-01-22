@@ -38,7 +38,6 @@ class MyProjectStack(Stack):
         self.internet_gateway_B = self.attach_internet_gateway(self.vpc_B)
         
         self.elastic_ip = ec2.CfnEIP(self, "EIP")
-        self.internet_gateway = self.attach_internet_gateway()
         self.subnet_id_to_subnet_map = {}
         self.route_table_id_to_route_table_map = {}
         
