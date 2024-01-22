@@ -14,11 +14,23 @@ class MyProjectStack(Stack):
 
         # The code that defines your stack goes here
 
-        # create VPC
+        # create first a VPC (VPC_A)
     
-        self.deniz_vpc = ec2.Vpc(self, config.VPC, cidr = '10.10.10.0/24', nat_gateways =0,
+        self.vpc_A = ec2.Vpc(self, config.VPC_A, cidr = '10.10.10.0/24', max_azs=2, nat_gateways =0,
                                  subnet_configuration=[], enable_dns_support=True,
                                  enable_dns_hostnames=True)
+        
+        # create a second VPC (VPC_B)
+        self.vpc_B = ec2.Vpc(self, config.VPC_B, cidr = '10.20.20.0/24', max_azs=2, nat_gateways =0,
+                                 subnet_configuration=[], enable_dns_support=True,
+                                 enable_dns_hostnames=True)
+        
+         # Establish VPC peering connection
+        vpc_peering = ec2.CfnVPCPeeringConnection(self, 'VpcPeering',
+            peer_vpc_id=self.vpc_B.vpc_id,
+            vpc_id=self.vpc_A.vpc_id
+        )
+        
         self.elastic_ip = ec2.CfnEIP(self, "EIP")
         self.internet_gateway = self.attach_internet_gateway()
         self.subnet_id_to_subnet_map = {}
@@ -51,7 +63,7 @@ class MyProjectStack(Stack):
         """ Create and attach nat gateway to the VPC """
         nat_gateway = ec2.CfnNatGateway(self, config.NAT_GATEWAY,
                                         allocation_id=self.elastic_ip.attr_allocation_id,
-                                        subnet_id=self.subnet_id_to_subnet_map[config.PUBLIC_SUBNET].ref, )
+                                        subnet_id=self.subnet_id_to_subnet_map[config.VPC_A_PUBLIC_SUBNET].ref, )
         return nat_gateway
             
     def create_subnet_route_table_associations(self):
@@ -68,7 +80,7 @@ class MyProjectStack(Stack):
         """ Create subnets of the VPC """
         for subnet_id, subnet_config in config.SUBNET_CONFIGURATION.items():
             subnet = ec2.CfnSubnet(
-                self, subnet_id, vpc_id=self.deniz_vpc.vpc_id,
+                self, subnet_id, vpc_id=self.vpc_A.vpc_id,
                 cidr_block=subnet_config['cidr_block'],
                 availability_zone=subnet_config['availability_zone'],
                 tags=[{'key': 'Name', 'value': subnet_id}],
@@ -81,7 +93,7 @@ class MyProjectStack(Stack):
         """ Create Route Tables """
         for route_table_id in config.ROUTE_TABLES_ID_TO_ROUTES_MAP:
             self.route_table_id_to_route_table_map[route_table_id] = ec2.CfnRouteTable(
-                self, route_table_id, vpc_id=self.deniz_vpc.vpc_id,
+                self, route_table_id, vpc_id=self.vpc_A.vpc_id,
                 tags=[{'key': 'Name', 'value': route_table_id}]
             )    
         
@@ -89,7 +101,7 @@ class MyProjectStack(Stack):
         """ Create and attach internet gateway to the VPC """
         internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY)
         ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-attachment',
-                                    vpc_id=self.deniz_vpc.vpc_id,
+                                    vpc_id=self.vpc_A.vpc_id,
                                     internet_gateway_id=internet_gateway.ref)
         return internet_gateway
     
