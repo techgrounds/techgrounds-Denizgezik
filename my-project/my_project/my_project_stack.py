@@ -105,14 +105,3 @@ class MyProjectStack(Stack):
                                     internet_gateway_id=internet_gateway.ref)
         return internet_gateway
 
-
-    
-    
-    
-
-        
-        
-
-
-
-
