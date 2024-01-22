@@ -97,15 +97,13 @@ class MyProjectStack(Stack):
                 tags=[{'key': 'Name', 'value': route_table_id}]
             )    
         
-  def attach_internet_gateway(self) -> ec2.CfnInternetGateway:
+    def attach_internet_gateway(self) -> ec2.CfnInternetGateway:
         """ Create and attach internet gateway to the VPC """
         internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY)
         ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-attachment',
-                                    vpc_id=self.deniz_vpc.vpc_id,
+                                    vpc_id=self.vpc_A.vpc_id,
                                     internet_gateway_id=internet_gateway.ref)
-
-    
-    return internet_gateway
+        return internet_gateway
 
 
     

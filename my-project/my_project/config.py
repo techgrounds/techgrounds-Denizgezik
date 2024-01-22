@@ -29,7 +29,7 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP = {
     VPC_A_PUBLIC_ROUTE_TABLE: [
         {
             'destination_cidr_block': '0.0.0.0/0',
-            'gateway_id': INTERNET_GATEWAY_A,
+            'gateway_id': INTERNET_GATEWAY,
             'router_type': ec2.RouterType.GATEWAY
         }
     ],
@@ -43,7 +43,7 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP = {
     VPC_B_PUBLIC_ROUTE_TABLE: [
         {
             'destination_cidr_block': '0.0.0.0/0',
-            'gateway_id': INTERNET_GATEWAY_B,
+            'gateway_id': INTERNET_GATEWAY,
             'router_type': ec2.RouterType.GATEWAY
         }
     ],
