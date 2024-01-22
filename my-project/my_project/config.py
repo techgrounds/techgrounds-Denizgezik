@@ -9,7 +9,8 @@ from aws_cdk import (
 VPC_A = 'vpc_A'
 VPC_B = 'vpc_B'
 
-INTERNET_GATEWAY = 'internet-gateway'
+INTERNET_GATEWAY_A = 'internet-gateway-A'
+INTERNET_GATEWAY_B = 'internet-gateway-B'
 NAT_GATEWAY = 'nat-gateway'
 REGION = 'eu-central-1'
 
@@ -29,7 +30,7 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP = {
     VPC_A_PUBLIC_ROUTE_TABLE: [
         {
             'destination_cidr_block': '0.0.0.0/0',
-            'gateway_id': INTERNET_GATEWAY,
+            'gateway_id': INTERNET_GATEWAY_A,
             'router_type': ec2.RouterType.GATEWAY
         }
     ],
@@ -40,11 +41,10 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP = {
             'router_type': ec2.RouterType.NAT_GATEWAY
         }
     ],
-    
     VPC_B_PUBLIC_ROUTE_TABLE: [
         {
             'destination_cidr_block': '0.0.0.0/0',
-            'gateway_id': INTERNET_GATEWAY,
+            'gateway_id': INTERNET_GATEWAY_B,
             'router_type': ec2.RouterType.GATEWAY
         }
     ],

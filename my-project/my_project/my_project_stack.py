@@ -31,6 +31,12 @@ class MyProjectStack(Stack):
             vpc_id=self.vpc_A.vpc_id
         )
         
+         # Internet Gateway for VPC_A
+        self.internet_gateway_A = self.attach_internet_gateway(self.vpc_A)
+
+        # Internet Gateway for VPC_B
+        self.internet_gateway_B = self.attach_internet_gateway(self.vpc_B)
+        
         self.elastic_ip = ec2.CfnEIP(self, "EIP")
         self.internet_gateway = self.attach_internet_gateway()
         self.subnet_id_to_subnet_map = {}
@@ -98,12 +104,22 @@ class MyProjectStack(Stack):
             )    
         
     def attach_internet_gateway(self) -> ec2.CfnInternetGateway:
-        """ Create and attach internet gateway to the VPC """
+        """ Create and attach internet gateway to the VPC-A """
         internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY)
         ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-attachment',
                                     vpc_id=self.vpc_A.vpc_id,
                                     internet_gateway_id=internet_gateway.ref)
         return internet_gateway
+    
+    def attach_internet_gateway(self) -> ec2.CfnInternetGateway:
+        """ Create and attach internet gateway to the VPC-B """
+        internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY)
+        ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-attachment',
+                                    vpc_id=self.vpc_B.vpc_id,
+                                    internet_gateway_id=internet_gateway.ref)
+        return internet_gateway
+    
+    
     
 
         
