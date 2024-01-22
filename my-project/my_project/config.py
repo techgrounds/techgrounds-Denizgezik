@@ -9,8 +9,7 @@ from aws_cdk import (
 VPC_A = 'vpc_A'
 VPC_B = 'vpc_B'
 
-INTERNET_GATEWAY_A = 'internet-gateway-A'
-INTERNET_GATEWAY_B = 'internet-gateway-B'
+INTERNET_GATEWAY = 'internet-gateway'
 NAT_GATEWAY = 'nat-gateway'
 REGION = 'eu-central-1'
 
