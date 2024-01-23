@@ -15,7 +15,6 @@ class MyProjectStack(Stack):
         # The code that defines your stack goes here
 
         # create first a VPC (VPC_A)
-    
         self.vpc_A = ec2.Vpc(self, config.VPC_A, cidr = '10.10.10.0/24', max_azs=2, nat_gateways =0,
                                  subnet_configuration=[], enable_dns_support=True,
                                  enable_dns_hostnames=True)
@@ -30,9 +29,13 @@ class MyProjectStack(Stack):
             peer_vpc_id=self.vpc_B.vpc_id,
             vpc_id=self.vpc_A.vpc_id
         )
+        # Create the first Internet Gateway and attach it to VPC_A
+        self.internet_gateway_A = self.attach_internet_gateway_A(self.vpc_A)
+
+        # Create the second Internet Gateway and attach it to VPC_B
+        self.internet_gateway_B = self.attach_internet_gateway_B(self.vpc_B)
         
         self.elastic_ip = ec2.CfnEIP(self, "EIP")
-        self.internet_gateway = self.attach_internet_gateway()
         self.subnet_id_to_subnet_map = {}
         self.route_table_id_to_route_table_map = {}
         
@@ -53,7 +56,11 @@ class MyProjectStack(Stack):
                     'route_table_id': self.route_table_id_to_route_table_map[route_table_id].ref,
                 }
                 if route['router_type'] == ec2.RouterType.GATEWAY:
-                    kwargs['gateway_id'] = self.internet_gateway.ref
+                    # Choose the appropriate internet gateway based on the subnet or VPC
+                    if 'VPC_A' in route_table_id:
+                        kwargs['gateway_id'] = self.internet_gateway_A.ref
+                    elif 'VPC_B' in route_table_id:
+                        kwargs['gateway_id'] = self.internet_gateway_B.ref
                 if route['router_type'] == ec2.RouterType.NAT_GATEWAY:
                     kwargs['nat_gateway_id'] = self.nat_gateway.ref
                 del kwargs['router_type']
@@ -96,12 +103,19 @@ class MyProjectStack(Stack):
                 self, route_table_id, vpc_id=self.vpc_A.vpc_id,
                 tags=[{'key': 'Name', 'value': route_table_id}]
             )    
-        
-    def attach_internet_gateway(self) -> ec2.CfnInternetGateway:
+     
+    def attach_internet_gateway_A(self, vpc: ec2.Vpc) -> ec2.CfnInternetGateway:
         """ Create and attach internet gateway to the VPC """
-        internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY)
-        ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-attachment',
+        internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY_A)
+        ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-A-attachment',
                                     vpc_id=self.vpc_A.vpc_id,
                                     internet_gateway_id=internet_gateway.ref)
         return internet_gateway
 
+    def attach_internet_gateway_B(self, vpc: ec2.Vpc) -> ec2.CfnInternetGateway:
+        """ Create and attach internet gateway to the VPC """
+        internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY_B)
+        ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-B-attachment',
+                                    vpc_id=self.vpc_B.vpc_id,
+                                    internet_gateway_id=internet_gateway.ref)
+        return internet_gateway
