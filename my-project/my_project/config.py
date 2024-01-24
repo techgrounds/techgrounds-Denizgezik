@@ -69,6 +69,16 @@ VPC_B_PRIVATE_SUBNET = 'vpc-b-private-subnet'
 #VPC_B_PUBLIC_INSTANCE = 'vpc-b-public-instance'
 #VPC_B_PRIVATE_INSTANCE = 'vpc-b-private-instance'
 
+vpcs = {
+    "VPC_A": {
+        "cidr": "10.10.10.0/24",
+        "nat_gateways": 0
+    },
+    "VPC_B": {
+        "cidr": "10.20.20.0/24",
+        "nat_gateways": 0
+    }
+}
 
 SUBNET_CONFIGURATION = {
     VPC_A_PUBLIC_SUBNET: {
@@ -91,9 +101,9 @@ SUBNET_CONFIGURATION = {
     },
     VPC_B_PRIVATE_SUBNET: {
         'availability_zone': 'eu-central-1b',
-        'cidr_block': '10.20.20.128/25',
+        'cidr_block': '10.20.20.125/25',
         'map_public_ip_on_launch': False,
         'route_table_id': VPC_B_PRIVATE_ROUTE_TABLE,
     }
-    
+
 }

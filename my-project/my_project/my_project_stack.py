@@ -24,16 +24,20 @@ class MyProjectStack(Stack):
                                  subnet_configuration=[], enable_dns_support=True,
                                  enable_dns_hostnames=True)
         
-         # Establish VPC peering connection
+        # Establish VPC peering connection
         vpc_peering = ec2.CfnVPCPeeringConnection(self, 'VpcPeering',
             peer_vpc_id=self.vpc_B.vpc_id,
             vpc_id=self.vpc_A.vpc_id
         )
+        # Optionally, add dependency to ensure correct order during deployment
+        vpc_peering.add_dependency(self.vpc_A.node.default_child)
+        vpc_peering.add_dependency(self.vpc_B.node.default_child)
+
         # Create the first Internet Gateway and attach it to VPC_A
-        self.internet_gateway_A = self.attach_internet_gateway_A(self.vpc_A)
+        self.internet_gateway_A = self.attach_internet_gateway_A()
 
         # Create the second Internet Gateway and attach it to VPC_B
-        self.internet_gateway_B = self.attach_internet_gateway_B(self.vpc_B)
+        self.internet_gateway_B = self.attach_internet_gateway_B()
         
         self.elastic_ip = ec2.CfnEIP(self, "EIP")
         self.subnet_id_to_subnet_map = {}
@@ -104,7 +108,7 @@ class MyProjectStack(Stack):
                 tags=[{'key': 'Name', 'value': route_table_id}]
             )    
      
-    def attach_internet_gateway_A(self, vpc: ec2.Vpc) -> ec2.CfnInternetGateway:
+    def attach_internet_gateway_A(self) -> ec2.CfnInternetGateway:
         """ Create and attach internet gateway to the VPC """
         internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY_A)
         ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-A-attachment',
@@ -112,10 +116,11 @@ class MyProjectStack(Stack):
                                     internet_gateway_id=internet_gateway.ref)
         return internet_gateway
 
-    def attach_internet_gateway_B(self, vpc: ec2.Vpc) -> ec2.CfnInternetGateway:
+    def attach_internet_gateway_B(self) -> ec2.CfnInternetGateway:
         """ Create and attach internet gateway to the VPC """
-        internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY_B)
+        internet_gateway = ec2.CfnInternetGateway(self, config.INTERNET_GATEWAY_B)    
         ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-B-attachment',
                                     vpc_id=self.vpc_B.vpc_id,
                                     internet_gateway_id=internet_gateway.ref)
         return internet_gateway
+    
