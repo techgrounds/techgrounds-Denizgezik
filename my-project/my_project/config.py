@@ -25,7 +25,7 @@ VPC_A_PRIVATE_SUBNET = 'vpc-a-private-subnet'
 VPC_B_PUBLIC_SUBNET = 'vpc-b-public-subnet'
 VPC_B_PRIVATE_SUBNET = 'vpc-b-pubic-subnet'
 
-ROUTE_TABLES_ID_TO_ROUTES_MAP = {
+ROUTE_TABLES_ID_TO_ROUTES_MAP_1 = {
     VPC_A_PUBLIC_ROUTE_TABLE: [
         {
             'destination_cidr_block': '0.0.0.0/0',
@@ -40,6 +40,9 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP = {
             'router_type': ec2.RouterType.NAT_GATEWAY
         }
     ],
+}
+
+ROUTE_TABLES_ID_TO_ROUTES_MAP_2 = {
     VPC_B_PUBLIC_ROUTE_TABLE: [
         {
             'destination_cidr_block': '0.0.0.0/0',
@@ -68,7 +71,7 @@ VPC_B_PRIVATE_SUBNET = 'vpc-b-private-subnet'
 #VPC_B_PRIVATE_INSTANCE = 'vpc-b-private-instance'
 
 
-SUBNET_CONFIGURATION = {
+SUBNET_CONFIGURATION_1 = {
     VPC_A_PUBLIC_SUBNET: {
         'availability_zone': 'eu-central-1a',
         'cidr_block': '10.10.10.0/25',
@@ -80,8 +83,11 @@ SUBNET_CONFIGURATION = {
         'cidr_block': '10.10.10.128/25',
         'map_public_ip_on_launch': False,
         'route_table_id': VPC_A_PRIVATE_ROUTE_TABLE,
-    },
-    VPC_B_PUBLIC_SUBNET: {
+    },   
+}
+
+SUBNET_CONFIGURATION_2 = {
+VPC_B_PUBLIC_SUBNET: {
         'availability_zone': 'eu-central-1a',
         'cidr_block': '10.20.20.0/25',
         'map_public_ip_on_launch': True,
@@ -93,5 +99,5 @@ SUBNET_CONFIGURATION = {
         'map_public_ip_on_launch': False,
         'route_table_id': VPC_B_PRIVATE_ROUTE_TABLE,
     }
-    
 }
+

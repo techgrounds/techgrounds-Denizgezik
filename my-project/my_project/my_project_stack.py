@@ -45,7 +45,7 @@ class MyProjectStack(Stack):
 
     def create_routes(self):
         """ Create routes of the Route Tables """
-        for route_table_id, routes in config.ROUTE_TABLES_ID_TO_ROUTES_MAP.items():
+        for route_table_id, routes in config.ROUTE_TABLES_ID_TO_ROUTES_MAP_1.items():
             for i in range(len(routes)):
                 route = routes[i]
                 kwargs = {
@@ -68,19 +68,36 @@ class MyProjectStack(Stack):
             
     def create_subnet_route_table_associations(self):
         """ Associate subnets with route tables """
-        for subnet_id, subnet_config in config.SUBNET_CONFIGURATION.items():
+        for subnet_id, subnet_config in config.SUBNET_CONFIGURATION_1.items():
             route_table_id = subnet_config['route_table_id']
             ec2.CfnSubnetRouteTableAssociation(
                 self, f'{subnet_id}-{route_table_id}',
                 subnet_id=self.subnet_id_to_subnet_map[subnet_id].ref,
                 route_table_id=self.route_table_id_to_route_table_map[route_table_id].ref
-            )    
+            ) 
+        for subnet_id, subnet_config in config.SUBNET_CONFIGURATION_2.items():
+            route_table_id = subnet_config['route_table_id']
+            ec2.CfnSubnetRouteTableAssociation(
+                self, f'{subnet_id}-{route_table_id}',
+                subnet_id=self.subnet_id_to_subnet_map[subnet_id].ref,
+                route_table_id=self.route_table_id_to_route_table_map[route_table_id].ref
+            )   
         
     def create_subnets(self):
         """ Create subnets of the VPC """
-        for subnet_id, subnet_config in config.SUBNET_CONFIGURATION.items():
+        for subnet_id, subnet_config in config.SUBNET_CONFIGURATION_1.items():
             subnet = ec2.CfnSubnet(
                 self, subnet_id, vpc_id=self.vpc_A.vpc_id,
+                cidr_block=subnet_config['cidr_block'],
+                availability_zone=subnet_config['availability_zone'],
+                tags=[{'key': 'Name', 'value': subnet_id}],
+                map_public_ip_on_launch=subnet_config['map_public_ip_on_launch'],
+            )
+            self.subnet_id_to_subnet_map[subnet_id] = subnet
+        
+        for subnet_id, subnet_config in config.SUBNET_CONFIGURATION_2.items():
+            subnet = ec2.CfnSubnet(
+                self, subnet_id, vpc_id=self.vpc_B.vpc_id,
                 cidr_block=subnet_config['cidr_block'],
                 availability_zone=subnet_config['availability_zone'],
                 tags=[{'key': 'Name', 'value': subnet_id}],
@@ -91,11 +108,16 @@ class MyProjectStack(Stack):
         
     def create_route_tables(self):
         """ Create Route Tables """
-        for route_table_id in config.ROUTE_TABLES_ID_TO_ROUTES_MAP:
+        for route_table_id in config.ROUTE_TABLES_ID_TO_ROUTES_MAP_1:
             self.route_table_id_to_route_table_map[route_table_id] = ec2.CfnRouteTable(
                 self, route_table_id, vpc_id=self.vpc_A.vpc_id,
                 tags=[{'key': 'Name', 'value': route_table_id}]
-            )    
+            ) 
+        for route_table_id in config.ROUTE_TABLES_ID_TO_ROUTES_MAP_2:
+            self.route_table_id_to_route_table_map[route_table_id] = ec2.CfnRouteTable(
+                self, route_table_id, vpc_id=self.vpc_B.vpc_id,
+                tags=[{'key': 'Name', 'value': route_table_id}]
+            ) 
         
     def attach_internet_gateway(self) -> ec2.CfnInternetGateway:
         """ Create and attach internet gateway to the VPC """
