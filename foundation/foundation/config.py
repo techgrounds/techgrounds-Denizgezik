@@ -9,7 +9,7 @@ VPC_B = 'vpc_B'
 INTERNET_GATEWAY = 'internet-gateway'
 NAT_GATEWAY = 'nat-gateway'
 REGION = 'eu-central-1'
-VPC_PEERING_CONNECTION = 'vpc-peering-connection'
+VPC_PEERING_CONNECTION = 'vpc-peering'
 
 # route tables
 VPC_A_PUBLIC_ROUTE_TABLE = 'vpc-a-public-route-table'
@@ -30,7 +30,11 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP_1 = {
             'gateway_id': INTERNET_GATEWAY,
             'router_type': ec2.RouterType.GATEWAY
         },
-        
+        # {
+        #    'destination_cidr_block': '10.20.20.0/24',  # CIDR block of VPC_B
+        #    'vpc_peering_connection_id': VPC_PEERING_CONNECTION,
+        #    'router_type': ec2.RouterType.VPC_PEERING_CONNECTION
+        #}    
     ],
     VPC_A_PRIVATE_ROUTE_TABLE: [
         {
@@ -39,13 +43,6 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP_1 = {
             'router_type': ec2.RouterType.NAT_GATEWAY
         }
     ],
-    VPC_PEERING_ROUTE_TABLE: [
-        {
-            'destination_cidr_block': '0.0.0.0/0',
-            'gateway_id': VPC_PEERING_CONNECTION,
-            'router_type': ec2.RouterType.VPC_PEERING_CONNECTION
-        }
-    ]
 }
 
 ROUTE_TABLES_ID_TO_ROUTES_MAP_2 = {
@@ -55,18 +52,14 @@ ROUTE_TABLES_ID_TO_ROUTES_MAP_2 = {
             'gateway_id': INTERNET_GATEWAY,
             'router_type': ec2.RouterType.GATEWAY
         },
-        {
-            'destination_cidr_block': '0.0.0.0/0',
-            'router_type': ec2.RouterType.VPC_PEERING_CONNECTION
-        }
-        
+       # {
+       #     'destination_cidr_block': '10.10.10.0/24',  # CIDR block of VPC_A
+       #     'vpc_peering_connection_id': VPC_PEERING_CONNECTION,
+       #     'router_type': ec2.RouterType.VPC_PEERING_CONNECTION
+       # } 
     ],
     VPC_B_PRIVATE_ROUTE_TABLE: [
-        {
-            'destination_cidr_block': '0.0.0.0/0',
-            'nat_gateway_id': NAT_GATEWAY,
-            'router_type': ec2.RouterType.NAT_GATEWAY
-        }
+        # Remove the route entry for the NAT Gateway
     ],
 }
 
@@ -92,7 +85,7 @@ SUBNET_CONFIGURATION_1 = {
     VPC_A_PRIVATE_SUBNET: {
         'availability_zone': 'eu-central-1b',
         'cidr_block': '10.10.10.128/25',
-        'map_public_ip_on_launch': False,                          #any resources which is launched in this private subnet will not be assigned a public ip by default
+        'map_public_ip_on_launch': False,                #any resources which is launched in this private subnet will not be assigned a public ip by default
         'route_table_id': VPC_A_PRIVATE_ROUTE_TABLE,
     },   
 }

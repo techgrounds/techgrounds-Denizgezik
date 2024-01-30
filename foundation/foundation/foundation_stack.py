@@ -51,6 +51,8 @@ class FoundationStack(Stack):
 
     def create_routes(self):
         """ Create routes of the Route Tables """
+        
+        # Iterate over ROUTE_TABLES_ID_TO_ROUTES_MAP_1
         for route_table_id, routes in config.ROUTE_TABLES_ID_TO_ROUTES_MAP_1.items():
             for i in range(len(routes)):
                 route = routes[i]
@@ -67,6 +69,39 @@ class FoundationStack(Stack):
                     kwargs['nat_gateway_id'] = self.nat_gateway.ref
                 del kwargs['router_type']
                 ec2.CfnRoute(self, f'{route_table_id}-route-{i}', **kwargs)
+                
+        # Iterate over ROUTE_TABLES_ID_TO_ROUTES_MAP_2
+        # for route_table_id, routes in config.ROUTE_TABLES_ID_TO_ROUTES_MAP_2.items():
+            # for j in range(len(routes)):
+            #     route = routes[j]
+            #     kwargs = {
+            #         **route,
+            #         'route_table_id': self.route_table_id_to_route_table_map[route_table_id].ref,
+            #     }
+            #     if route['router_type'] == ec2.RouterType.VPC_PEERING_CONNECTION:
+            #         # Specify the VPC peering connection ID
+            #         kwargs['vpc_peering_connection_id'] = self.vpc_peering.ref
+            #     if route['router_type'] == ec2.RouterType.GATEWAY:
+            #         kwargs['gateway_id'] = self.internet_gateway.ref
+            #     if route['router_type'] == ec2.RouterType.NAT_GATEWAY:
+            #         kwargs['nat_gateway_id'] = self.nat_gateway.ref
+            #     del kwargs['router_type']
+            #     ec2.CfnRoute(self, f'{route_table_id}-route-{j}', **kwargs)
+        
+        route_table_1 = self.route_table_id_to_route_table_map[config.VPC_B_PUBLIC_ROUTE_TABLE].ref
+        route_table_2 = self.route_table_id_to_route_table_map[config.VPC_A_PUBLIC_ROUTE_TABLE].ref
+                
+        ec2.CfnRoute(self, 'RouteToVPC_A',
+            route_table_id=route_table_1,
+            destination_cidr_block='10.10.10.0/24',  # The CIDR-block of VPC_A
+            vpc_peering_connection_id=self.vpc_peering.ref,
+            )
+
+        ec2.CfnRoute(self, 'RouteToVPC_B',
+            route_table_id=route_table_2,
+            destination_cidr_block='10.20.20.0/24',  # The CIDR-block of VPC_B
+            vpc_peering_connection_id=self.vpc_peering.ref,
+            )
     
     def attach_nat_gateway(self) -> ec2.CfnNatGateway:
         """ Create and attach nat gateway to the VPC """
