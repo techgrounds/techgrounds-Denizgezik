@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-26T10:49:59.118Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="4Ofbug2cL7XLcZRV9BPg" version="22.1.21" type="github">
+<mxfile host="app.diagrams.net" modified="2024-02-01T09:17:18.711Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15" etag="WgWObsd-TfhPQkdwtzvt" version="22.1.21" type="github">
   <diagram name="Page-1" id="b6D4jz3HzjE1hiPzRdWD">
-    <mxGraphModel dx="1404" dy="701" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1872" dy="935" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -85,9 +85,6 @@
         <mxCell id="S3IekiKiwkdov-VBDk4H-51" value="Route table" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.route_table;" parent="S3IekiKiwkdov-VBDk4H-14" vertex="1">
           <mxGeometry x="31" y="75" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="vmjukGU0U_6vCmmB2KWr-6" value="IGW-B" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="S3IekiKiwkdov-VBDk4H-14" vertex="1">
-          <mxGeometry x="-35" y="195" width="71" height="10" as="geometry" />
-        </mxCell>
         <mxCell id="S3IekiKiwkdov-VBDk4H-12" value="Subnet:ACL" style="shape=mxgraph.ibm.box;prType=subnet;fontStyle=0;verticalAlign=top;align=left;spacingLeft=32;spacingTop=4;fillColor=#E6F0E2;rounded=0;whiteSpace=wrap;html=1;strokeColor=#00882B;strokeWidth=1;dashed=0;container=1;spacing=-4;collapsible=0;expand=0;recursiveResize=0;" parent="S3IekiKiwkdov-VBDk4H-1" vertex="1">
           <mxGeometry x="420" y="120" width="240" height="300" as="geometry" />
         </mxCell>
@@ -130,11 +127,14 @@
         <mxCell id="S3IekiKiwkdov-VBDk4H-63" value="VPC Peering&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="S3IekiKiwkdov-VBDk4H-1" vertex="1">
           <mxGeometry x="393" y="509" width="100" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="vmjukGU0U_6vCmmB2KWr-3" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.internet_gateway;" parent="S3IekiKiwkdov-VBDk4H-1" vertex="1">
-          <mxGeometry x="401" y="790" width="40" height="40" as="geometry" />
-        </mxCell>
         <mxCell id="6G9l5TmCZ_XzWNABy3UR-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="S3IekiKiwkdov-VBDk4H-1" source="S3IekiKiwkdov-VBDk4H-49" target="S3IekiKiwkdov-VBDk4H-67">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6G9l5TmCZ_XzWNABy3UR-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="S3IekiKiwkdov-VBDk4H-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420.5333333333333" y="835" as="sourcePoint" />
+            <mxPoint x="421.0666666666666" y="829.9995445228876" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="S3IekiKiwkdov-VBDk4H-65" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.internet_2;fillColor=#D2D3D3;gradientColor=none;" parent="1" vertex="1">
           <mxGeometry x="392" width="60" height="40" as="geometry" />
