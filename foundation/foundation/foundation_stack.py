@@ -16,13 +16,17 @@ class FoundationStack(Stack):
 
         # create first a VPC (VPC_A)
     
-        self.vpc_A = ec2.Vpc(self, config.VPC_A, ip_addresses=ec2.IpAddresses.cidr('10.10.10.0/24'), max_azs=2, nat_gateways =0,
-                                 subnet_configuration=[], enable_dns_support=True,
+        self.vpc_A = ec2.Vpc(self, config.VPC_A, ip_addresses=ec2.IpAddresses.cidr('10.10.10.0/24'), vpc_name='vpc-A', 
+                                 max_azs=2, nat_gateways =0,
+                                 subnet_configuration=[],
+                                 enable_dns_support=True,
                                  enable_dns_hostnames=True)
         
         # create a second VPC (VPC_B)
-        self.vpc_B = ec2.Vpc(self, config.VPC_B, ip_addresses=ec2.IpAddresses.cidr('10.20.20.0/24'), max_azs=2, nat_gateways =0,
-                                 subnet_configuration=[], enable_dns_support=True,
+        self.vpc_B = ec2.Vpc(self, config.VPC_B, ip_addresses=ec2.IpAddresses.cidr('10.20.20.0/24'), vpc_name='vpc-B', 
+                                 max_azs=2, nat_gateways =0,
+                                 subnet_configuration=[], 
+                                 enable_dns_support=True,
                                  enable_dns_hostnames=True)
         
          # Establish VPC peering connection
@@ -60,9 +64,6 @@ class FoundationStack(Stack):
                     **route,
                     'route_table_id': self.route_table_id_to_route_table_map[route_table_id].ref,
                 }
-                if route['router_type'] == ec2.RouterType.VPC_PEERING_CONNECTION:
-                    # Specify the VPC peering connection ID
-                    kwargs['vpc_peering_connection_id'] = self.vpc_peering.ref
                 if route['router_type'] == ec2.RouterType.GATEWAY:
                     kwargs['gateway_id'] = self.internet_gateway.ref
                 if route['router_type'] == ec2.RouterType.NAT_GATEWAY:
@@ -88,6 +89,11 @@ class FoundationStack(Stack):
             #     del kwargs['router_type']
             #     ec2.CfnRoute(self, f'{route_table_id}-route-{j}', **kwargs)
         
+        # Get the subnets and route tables for the VPC peering connection
+        vpc_a_private_subnet= self.subnet_id_to_subnet_map[config.VPC_A_PRIVATE_SUBNET]
+        vpc_a_public_subnet= self.subnet_id_to_subnet_map[config.VPC_A_PUBLIC_SUBNET] 
+        vpc_b_private_subnet= self.subnet_id_to_subnet_map[config.VPC_B_PRIVATE_SUBNET]
+        vpc_b_public_subnet= self.subnet_id_to_subnet_map[config.VPC_B_PUBLIC_SUBNET]
         route_table_1 = self.route_table_id_to_route_table_map[config.VPC_B_PUBLIC_ROUTE_TABLE].ref
         route_table_2 = self.route_table_id_to_route_table_map[config.VPC_A_PUBLIC_ROUTE_TABLE].ref
                 
@@ -103,6 +109,152 @@ class FoundationStack(Stack):
             vpc_peering_connection_id=self.vpc_peering.ref,
             )
     
+        # Create NACLs in VPC_A
+        nacl_private_vpc_a = ec2.CfnNetworkAcl(self, "Nacl_Private_A",
+            vpc_id=self.vpc_A.vpc_id,
+            tags=[{'key': 'Name', 'value': 'Nacl_Private_A'}]
+        )
+
+        nacl_public_vpc_a = ec2.CfnNetworkAcl(self, "Nacl_Public_A",
+            vpc_id=self.vpc_A.vpc_id,
+            tags=[{'key': 'Name', 'value': 'Nacl_Public_A'}]
+        )
+     
+        # Associate Network ACLs with subnets in VPC_A
+        ec2.CfnSubnetNetworkAclAssociation(self, "Nacl_Private_VPC_A_ssociation",
+        subnet_id=vpc_a_private_subnet.ref,
+        network_acl_id=nacl_private_vpc_a.ref
+        ).add_dependency(nacl_private_vpc_a)
+        
+        ec2.CfnSubnetNetworkAclAssociation(self, "Nacl_Public_VPC_A_Association",
+        subnet_id=vpc_a_public_subnet.ref,
+        network_acl_id=nacl_public_vpc_a.ref
+        ).add_dependency(nacl_public_vpc_a)
+
+            
+        # Add Inbound and Outbound rules for HTTP traffic (port 80) in VPC_A
+        ec2.CfnNetworkAclEntry(self, "HTTPInboundRule_VPC_A",
+            network_acl_id=nacl_public_vpc_a.ref,  
+            rule_number=100,  
+            protocol=6,  
+            rule_action="allow",
+            egress=False,
+            cidr_block="0.0.0.0/0",  
+            port_range=ec2.CfnNetworkAclEntry.PortRangeProperty(to=80, from_=80),
+        )
+
+        ec2.CfnNetworkAclEntry(self, "HTTPOutboundRule_VPC_A",
+            network_acl_id=nacl_public_vpc_a.ref, 
+            rule_number=100,  
+            protocol=6,  
+            rule_action="allow",
+            egress=True,
+            cidr_block="0.0.0.0/0",  
+            port_range=ec2.CfnNetworkAclEntry.PortRangeProperty(to=80, from_=80),
+        )
+
+        
+     # Create NACLs in VPC_B
+        nacl_private_b = ec2.CfnNetworkAcl(self, "Nacl_Private_B",
+            vpc_id=self.vpc_B.vpc_id,
+            tags=[{'key': 'Name', 'value': 'Nacl_Private_B'}]
+        )
+        
+        nacl_public_vpc_b = ec2.CfnNetworkAcl(self, "Nacl_Public_B",
+            vpc_id=self.vpc_B.vpc_id,
+            tags=[{'key': 'Name', 'value': 'Nacl_Public_B'}]
+        )
+        
+        
+        # Associate Network ACLs with subnets in VPC_B
+        ec2.CfnSubnetNetworkAclAssociation(self, "Nacl_Private_VPC_B_Association",
+        subnet_id=vpc_b_private_subnet.ref,
+        network_acl_id=nacl_private_b.ref
+        ).add_dependency(nacl_private_b)
+        
+        ec2.CfnSubnetNetworkAclAssociation(self, "Nacl_Public_VPC_B_Association",
+        subnet_id=vpc_b_public_subnet.ref,
+        network_acl_id=nacl_public_vpc_b.ref
+        ).add_dependency(nacl_public_vpc_b)
+    
+        # Add Inbound and Outbound rules for HTTP traffic (port 80) in VPC_B
+        ec2.CfnNetworkAclEntry(self, "HTTPInboundRule_VPC_B",
+            network_acl_id=nacl_public_vpc_b.ref,  
+            rule_number=100,  
+            protocol=6,  
+            rule_action="allow",
+            egress=False,
+            cidr_block="0.0.0.0/0",  # Allow traffic from any source
+            port_range=ec2.CfnNetworkAclEntry.PortRangeProperty(to=80, from_=80),
+        )
+
+        ec2.CfnNetworkAclEntry(self, "HTTPOutboundRule_VPC_B",
+            network_acl_id=nacl_public_vpc_b.ref,  
+                rule_number=100,  
+                protocol=6,  # TCP protocol
+                rule_action="allow",
+                egress=True,
+                cidr_block="0.0.0.0/0",  # Allow traffic to any destination
+                port_range=ec2.CfnNetworkAclEntry.PortRangeProperty(to=80, from_=80),
+        )
+
+
+        # Create a security group for the EC2 instance
+        
+        self.webserver_sg = ec2.SecurityGroup(self, "webserver_sg",
+        vpc=self.vpc_A,
+        description="Webserver SG",
+        )
+
+        # self.webserver_sg = ec2.SecurityGroup.from_security_group_id(self, "webserver_sg", security_group_id="sg-0348d1f76a92738f1")
+        # vpc = ec2.Vpc.from_lookup(self, "VPC", vpc_id="vpc-06ee58f5f9e25292f")
+        # ingress_permission = ec2.Port(protocol=ec2.Protocol.TCP, from_port=22, to_port=22, string_representation="tcp/22")
+
+        # self.webserver_sg.add_ingress_rule(
+        # ec2.Peer.any_ipv4(), 
+        # ingress_permission
+        # )
+
+         # Allow inbound traffic on port 80 (HTTP)
+        self.webserver_sg.add_ingress_rule(
+            peer=ec2.Peer.ipv4("0.0.0.0/0"),
+            connection=ec2.Port.tcp(80),
+            description="Allow HTTP traffic from anywhere",
+            )
+        
+        # Allow inbound traffic on port 22 (SSH)
+        self.webserver_sg.add_ingress_rule(
+            peer=ec2.Peer.ipv4("10.0.2.4/32"),
+            connection=ec2.Port.tcp(22),
+            description="Allow SSH traffic from admin server",
+            )
+
+        # Open and read the user data file
+        with open("./foundation/user_data.sh") as f:
+            self.user_data = f.read()
+        
+        # Create a key pair
+        self.web_key_pair = ec2.KeyPair(self, "WebKeyPair",
+            key_pair_name="web-key-pair",  # Provide a name for your key pair
+        )
+        
+        # Create Instance in the Public subnet of VPC_A
+        self.webserver_instance = ec2.Instance(self, "webserver_instance",
+            instance_name="webserver_instance",
+            vpc=self.vpc_A,
+            private_ip_address="10.0.0.10",
+            vpc_subnets=ec2.SubnetSelection(subnets=[vpc_a_public_subnet]),
+            key_pair=self.web_key_pair,
+            security_group=self.webserver_sg,
+            instance_type=ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+            machine_image=ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2023),
+            user_data=ec2.UserData.custom(self.user_data),
+            block_devices=[ec2.BlockDevice(device_name="/dev/xvda", volume=ec2.BlockDeviceVolume.ebs(volume_size=8,                              # 8 GB
+                    encrypted=True))
+            ]
+        )
+    
+        
     def attach_nat_gateway(self) -> ec2.CfnNatGateway:
         """ Create and attach nat gateway to the VPC """
         nat_gateway = ec2.CfnNatGateway(self, config.NAT_GATEWAY,
@@ -169,6 +321,7 @@ class FoundationStack(Stack):
         ec2.CfnVPCGatewayAttachment(self, 'internet-gateway-attachment',
                                     vpc_id=self.vpc_A.vpc_id,
                                     internet_gateway_id=internet_gateway.ref)
+    
         return internet_gateway
 
     
