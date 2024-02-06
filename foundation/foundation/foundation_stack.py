@@ -197,15 +197,7 @@ class FoundationStack(Stack):
                 cidr_block="0.0.0.0/0",  # Allow traffic to any destination
                 port_range=ec2.CfnNetworkAclEntry.PortRangeProperty(to=80, from_=80),
         )
-
-
-        # Create a security group for the EC2 instance
         
-        self.webserver_sg = ec2.SecurityGroup(self, "webserver_sg",
-        vpc=self.vpc_A,
-        description="Webserver SG",
-        )
-
         # self.webserver_sg = ec2.SecurityGroup.from_security_group_id(self, "webserver_sg", security_group_id="sg-0348d1f76a92738f1")
         # vpc = ec2.Vpc.from_lookup(self, "VPC", vpc_id="vpc-06ee58f5f9e25292f")
         # ingress_permission = ec2.Port(protocol=ec2.Protocol.TCP, from_port=22, to_port=22, string_representation="tcp/22")
@@ -215,6 +207,12 @@ class FoundationStack(Stack):
         # ingress_permission
         # )
 
+        # Create a security group for the EC2 instance
+        self.webserver_sg = ec2.SecurityGroup(self, "webserver_sg",
+        vpc=self.vpc_A,
+        description="Webserver SG",
+        )
+
          # Allow inbound traffic on port 80 (HTTP)
         self.webserver_sg.add_ingress_rule(
             peer=ec2.Peer.ipv4("0.0.0.0/0"),
@@ -222,7 +220,7 @@ class FoundationStack(Stack):
             description="Allow HTTP traffic from anywhere",
             )
         
-        # Allow inbound traffic on port 22 (SSH)
+        # # Allow inbound traffic on port 22 (SSH)
         self.webserver_sg.add_ingress_rule(
             peer=ec2.Peer.ipv4("10.0.2.4/32"),
             connection=ec2.Port.tcp(22),
