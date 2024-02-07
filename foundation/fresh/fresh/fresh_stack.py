@@ -53,13 +53,84 @@ class FreshStack(Stack):
                                         route_table_id= vpc_B.isolated_subnets[0].route_table.route_table_id,
                                         vpc_peering_connection_id=vpc_peering.attr_id
                                         )
+        
+
+         # Create NACL for the webserver
+        self.nacl_webserver = ec2.NetworkAcl(self, "NaclWebServer",
+            vpc=vpc_A,
+            subnet_selection=ec2.SubnetSelection(subnets=[vpc_A.public_subnets[0]]),
+        )
+
+         # Allow NACL Inbound Ephemeral traffic for Linux kernels. Needed to install httpd.
+        self.nacl_webserver.add_entry("Inbound-Ephemeral",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=90,
+            traffic=ec2.AclTraffic.tcp_port_range(32768, 60999),    # Linux ephemeral ports
+            direction=ec2.TrafficDirection.INGRESS
+            )
+    
+         # Allow NACL Inbound HTTP traffic from anywhere
+        self.nacl_webserver.add_entry("Inbound-HTTP",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.tcp_port(80),                    # HTTP port
+            direction=ec2.TrafficDirection.INGRESS
+            )
+
+         # Allow NACL Inbound SSH traffic from admin server
+        self.nacl_webserver.add_entry("Inbound-SSH",
+            cidr=ec2.AclCidr.ipv4("10.20.20.20/32"),       # Static IP of Admin Server
+            rule_number=110,
+            traffic=ec2.AclTraffic.tcp_port(22),        # SSH port
+            direction=ec2.TrafficDirection.INGRESS
+            )
+
+        # Allow NACL Outbound all traffic
+        self.nacl_webserver.add_entry("Outbound-All",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.all_traffic(),
+            direction=ec2.TrafficDirection.EGRESS
+            )
+
+        # Create NACL for the management server
+        self.nacl_managserver = ec2.NetworkAcl(self, "NaclManagServer",
+            vpc=vpc_B,
+            subnet_selection=ec2.SubnetSelection(subnets=[vpc_B.public_subnets[0]]),
+        )
+
+        # Allow NACL Inbound Ephemeral traffic for Windows Server 2022.
+        self.nacl_managserver.add_entry("Inbound-Ephemeral",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=90,
+            traffic=ec2.AclTraffic.tcp_port_range(49152, 65535),    # Windows ephemeral ports
+            direction=ec2.TrafficDirection.INGRESS
+            )
+        
+        # Allow NACL Inbound RDP traffic from only my IP
+        self.nacl_managserver.add_entry("Inbound-RDP",
+            cidr=ec2.AclCidr.ipv4("13.67.10.122/32"),    # change this to your home/office public IP
+            rule_number=100,
+            traffic=ec2.AclTraffic.tcp_port(3389),          # RDP port
+            direction=ec2.TrafficDirection.INGRESS
+            )
+        
+        # Allow NACL Outbound All traffic
+        self.nacl_managserver.add_entry("Outbound-All",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.all_traffic(),
+            direction=ec2.TrafficDirection.EGRESS
+            )
+        
+
          # Creëer een SG voor de webserver 
         sg_webserver = ec2.SecurityGroup(self,"sgWebServer", 
                                          vpc = vpc_A,
                                          description = "sg_webserver",
                                          allow_all_outbound = True,
         )
-        
+
         #open pord webserverSG
         sg_webserver.add_ingress_rule(
             peer=ec2.Peer.ipv4("0.0.0.0/0"),
@@ -105,7 +176,26 @@ class FreshStack(Stack):
                 )
             ]
         )
-              
+
+         # Output the Web server public IP
+        CfnOutput(self,"Webserver Public Ip",
+            value=self.web_server.instance_public_ip,
+            export_name="mypublicIpv4"
+            )
+        
+        # Output the Web server private IP
+        CfnOutput(self, "Webserver Private IP",
+            value=self.web_server.instance_private_ip,
+            export_name="webserver-private-ip"
+            )
+        
+        # Output the Web server private DNS name, needed for SSH-ing from Admin server
+        CfnOutput(self, "Webserver Private DNS name",
+            value=self.web_server.instance_private_dns_name,
+            export_name="webserver-private-dns-name"
+            )
+
+
         # Creëer een SG voor de Management server  
         sg_managserver = ec2.SecurityGroup(self,"sgmanagServer", 
                                          vpc = vpc_B,
@@ -140,15 +230,15 @@ class FreshStack(Stack):
                 )
             ],
         )
-
-        # Get the private IPV 4 of the private instance
-        CfnOutput(self,
-                  "myprivateIp",
-                  value=self.web_server.instance_private_ip,
-                  export_name="privateIpv4")
-        
+               
         # Get the public IPV 4 of the public instance
         CfnOutput(self,
-                  "public",
+                  "ManagServer Public IP",
                   value=self.management_server.instance_public_ip,
                   export_name="PublicIpv4")
+        
+        # Get the private IPV 4 of the private instance
+        CfnOutput(self,
+                  "ManagServer Private IP",
+                  value=self.management_server.instance_private_ip,
+                  export_name="PrivateIpv4")
