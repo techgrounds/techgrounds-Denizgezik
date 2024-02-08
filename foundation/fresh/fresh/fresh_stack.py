@@ -1,6 +1,10 @@
 from aws_cdk import (
     Stack,
-    aws_ec2 as ec2
+    aws_ec2 as ec2,
+    aws_backup as backup,           # for creating backup plan
+    Duration,                       # for configuring backup rule
+    aws_events as events,           # to schedule Backup time
+    aws_s3 as s3            
 )
 from constructs import Construct
 from aws_cdk import CfnOutput
@@ -221,12 +225,12 @@ class FreshStack(Stack):
             vpc=vpc_B,
             vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
             private_ip_address="10.20.20.20",
-            key_name="keypair-name_manag",
+            key_pair=self.key_pair_manag,
             security_group=sg_managserver,
             block_devices=[
                 ec2.BlockDevice(
                     device_name="/dev/sda1",
-                    volume=ec2.BlockDeviceVolume.ebs(30, encrypted=True)
+                    volume=ec2.BlockDeviceVolume.ebs(30, encrypted=True)    # activate encryption on attached EBS
                 )
             ],
         )
@@ -242,3 +246,40 @@ class FreshStack(Stack):
                   "ManagServer Private IP",
                   value=self.management_server.instance_private_ip,
                   export_name="PrivateIpv4")
+        
+
+        # Create a Backup plan
+        self.backup_plan = backup.BackupPlan(
+            self, "BackupPlan",
+            retention = ,
+            backup_plan_name="MyBackupPlan",  
+            backup_plan_rules=[
+                backup.BackupPlanRule(7),  # Retain daily backups for 7 days
+            ],
+        )
+
+        # Create a backup selection for the EC2 instances
+        self.backup_selection = backup.BackupSelection(
+            self, "BackupSelection",
+            resources=[backup.BackupResource.from_ec2_instance(self.web_server)],
+            backup_plan=self.backup_plan
+        )
+
+
+#         # Creëer een Application Load Balancer
+#         alb = elbv2.ApplicationLoadBalancer(self, "MyALB",
+#     vpc=vpc_A,
+#     internet_facing=True
+# )
+
+#         # Creëer een Target Group voor de webserver
+#         target_group = alb.add_target_group("WebServerTargetGroup",
+#             port=80,
+#             targets=[self.web_server]
+#         )
+
+#         # Voeg een luisterregel toe voor HTTP-verkeer
+#         alb.add_listener("HTTPListener",
+#             port=80,
+#             default_target_groups=[target_group]
+#         )
