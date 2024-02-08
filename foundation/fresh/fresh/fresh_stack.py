@@ -27,7 +27,7 @@ class FreshStack(Stack):
             nat_gateways=1,
         )
 
-        # Create the management server VPC
+        # Create the MANAGEMENT server VPC
         vpc_B = ec2.Vpc(self, "Network-B",
             ip_addresses=ec2.IpAddresses.cidr("10.20.20.0/24"),
             availability_zones=['eu-central-1a', 'eu-central-1b'],
@@ -39,7 +39,7 @@ class FreshStack(Stack):
             enable_dns_hostnames=True,
             nat_gateways=0,
         )
-        # Establish VPC peering connection
+        # Establish VPC PEERING CONNECTION
         vpc_peering = ec2.CfnVPCPeeringConnection(self, 'VpcPeering',
             peer_vpc_id=vpc_B.vpc_id,
             vpc_id=vpc_A.vpc_id
@@ -151,7 +151,7 @@ class FreshStack(Stack):
             connection=ec2.Port.tcp(22)),
         'allow SSH traffic from anywhere',
 
-        # Create a key pair
+        # Create a KEY PAIR
         self.key_pair = ec2.KeyPair(
             self, "KeyPair",
             key_pair_name="keypair-name_web",
@@ -162,7 +162,7 @@ class FreshStack(Stack):
         with open("./fresh/user_data.sh", "r") as file:
             user_data = file.read()
 
-        # Create webserver:
+        # Create WEBSERVER:
         self.web_server = ec2.Instance(self, "web_server",
             vpc = vpc_A, 
             instance_type = ec2.InstanceType("t2.micro"), 
@@ -211,14 +211,14 @@ class FreshStack(Stack):
             connection=ec2.Port.tcp(22)),
         'allow SSH traffic from anywhere',
         
-        # Create a key pair
+        # Create a KEY PAIR
         self.key_pair_manag = ec2.KeyPair(
             self, "KeyPairmanag",
             key_pair_name="keypair-name_manag",
             type=ec2.KeyPairType.RSA
         )
         
-        # Create the management server EC2 instance
+        # Create the MANAGEMENT SERVER EC2 instance
         self.management_server = ec2.Instance(self, "managServer",
             instance_type=ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
             machine_image=ec2.WindowsImage(ec2.WindowsVersion.WINDOWS_SERVER_2022_ENGLISH_FULL_BASE),
@@ -248,22 +248,32 @@ class FreshStack(Stack):
                   export_name="PrivateIpv4")
         
 
-        # Create a Backup plan
+        # Create a BACKUP PLAN
         self.backup_plan = backup.BackupPlan(
             self, "BackupPlan",
-            retention = ,
-            backup_plan_name="MyBackupPlan",  
-            backup_plan_rules=[
-                backup.BackupPlanRule(7),  # Retain daily backups for 7 days
-            ],
-        )
+            backup_plan_name="DailyBackupPlan",  
+             backup_plan_rules=[backup.BackupPlanRule(
+                rule_name="DailyRetentionRule",
+                delete_after=Duration.days(7),              # retain backups for 7 days
+                schedule_expression=events.Schedule.cron(
+                    hour="1",       
+                    minute="0", )   
+                )]
+            )
 
-        # Create a backup selection for the EC2 instances
-        self.backup_selection = backup.BackupSelection(
-            self, "BackupSelection",
-            resources=[backup.BackupResource.from_ec2_instance(self.web_server)],
-            backup_plan=self.backup_plan
-        )
+        # Create a backup selection for the Webserver 
+        self.backup_plan.add_selection("add-webserver", 
+            backup_selection_name="backup-webserver",
+            resources=[backup.BackupResource.from_ec2_instance(self.web_server)
+                ]
+            )
+        
+         # Create a backup selection for the Management server 
+        self.backup_plan.add_selection("add-managementserver", 
+            backup_selection_name="backup-managserver",
+            resources=[backup.BackupResource.from_ec2_instance(self.management_server)
+                ]
+            )
 
 
 #         # Creëer een Application Load Balancer
