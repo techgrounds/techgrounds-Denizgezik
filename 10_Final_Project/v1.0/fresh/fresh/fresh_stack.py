@@ -39,6 +39,7 @@ class FreshStack(Stack):
             enable_dns_hostnames=True,
             nat_gateways=0,
         )
+        
         # Establish VPC PEERING CONNECTION
         vpc_peering = ec2.CfnVPCPeeringConnection(self, 'VpcPeering',
             peer_vpc_id=vpc_B.vpc_id,
