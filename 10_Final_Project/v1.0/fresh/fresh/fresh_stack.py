@@ -24,7 +24,7 @@ class FreshStack(Stack):
             ],
             enable_dns_support=True,
             enable_dns_hostnames=True,
-            nat_gateways=1,
+            nat_gateways=0,
         )
 
         # Create the MANAGEMENT server VPC
@@ -33,7 +33,6 @@ class FreshStack(Stack):
             availability_zones=['eu-central-1a', 'eu-central-1b'],
             subnet_configuration=[
                 ec2.SubnetConfiguration(name="public", cidr_mask=26, subnet_type=ec2.SubnetType.PUBLIC),
-                ec2.SubnetConfiguration(name="private", cidr_mask=26, subnet_type=ec2.SubnetType.PRIVATE_ISOLATED)
             ],
             enable_dns_support=True,
             enable_dns_hostnames=True,
@@ -45,17 +44,17 @@ class FreshStack(Stack):
             peer_vpc_id=vpc_B.vpc_id,
             vpc_id=vpc_A.vpc_id
         )
-        # Modify Route table of the custom VPC private table to add the peering route
+        # Modify Route table of VPC-A Public table to add the peering route
         vpc_1_public_RT = ec2.CfnRoute(self, "PublicRT",
                                         destination_cidr_block= vpc_B.vpc_cidr_block,
                                         route_table_id= vpc_A.public_subnets[0].route_table.route_table_id,
                                         vpc_peering_connection_id=vpc_peering.attr_id
                                         )
         
-        # Modify Route table of the default VPC Public table to add the peering route
+        # Modify Route table of the VPC_B Private table to add the peering route
         vpc_2_private_RT = ec2.CfnRoute(self, "PrivatRT",
                                         destination_cidr_block=vpc_A.vpc_cidr_block,
-                                        route_table_id= vpc_B.isolated_subnets[0].route_table.route_table_id,
+                                        route_table_id= vpc_B.public_subnets[0].route_table.route_table_id,
                                         vpc_peering_connection_id=vpc_peering.attr_id
                                         )
         
@@ -114,7 +113,7 @@ class FreshStack(Stack):
         
         # Allow NACL Inbound RDP traffic from only my IP
         self.nacl_managserver.add_entry("Inbound-RDP",
-            cidr=ec2.AclCidr.ipv4("13.67.10.122/32"),    
+            cidr=ec2.AclCidr.ipv4("143.178.183.7/32"),    
             rule_number=100,
             traffic=ec2.AclTraffic.tcp_port(3389),          # RDP port
             direction=ec2.TrafficDirection.INGRESS
@@ -139,24 +138,26 @@ class FreshStack(Stack):
         #open pord webserverSG
         sg_webserver.add_ingress_rule(
             peer=ec2.Peer.ipv4("0.0.0.0/0"),
-            connection=ec2.Port.tcp(80)),
-        'allow HTTP traffic from anywhere',
-        
-        sg_webserver.add_ingress_rule(
-            peer=ec2.Peer.ipv4("0.0.0.0/0"),
-            connection=ec2.Port.tcp(443)),
-        'allow HTTPS traffic from anywhere',
+            connection=ec2.Port.tcp(80),
+            description= 'allow HTTP traffic from anywhere'
+        )
 
         sg_webserver.add_ingress_rule(
             peer=ec2.Peer.ipv4("0.0.0.0/0"),
-            connection=ec2.Port.tcp(22)),
-        'allow SSH traffic from anywhere',
+            connection=ec2.Port.tcp(443),
+            description='allow HTTPS traffic from anywhere'
+        )
+
+        sg_webserver.add_ingress_rule(
+            peer=ec2.Peer.ipv4("0.0.0.0/0"),
+            connection=ec2.Port.tcp(22),
+            description='allow SSH traffic from anywhere'
+        )
 
         # Create a KEY PAIR
-        self.key_pair = ec2.KeyPair(
+        self.key_pair = ec2.KeyPair.from_key_pair_name(
             self, "KeyPair",
-            key_pair_name="keypair-name_web",
-            type=ec2.KeyPairType.RSA
+            key_pair_name="keypair-name_web"
         )
       
         # Open and read the user data file
@@ -207,16 +208,19 @@ class FreshStack(Stack):
                                          description = "sg_managserver",
                                          allow_all_outbound = True,
         )
-        sg_managserver.add_ingress_rule(
-            peer=ec2.Peer.ipv4("0.0.0.0/0"),
-            connection=ec2.Port.tcp(22)),
-        'allow SSH traffic from anywhere',
         
+         # Allow SG inbound RDP traffic from only my IP
+        sg_managserver.add_ingress_rule(
+            peer=ec2.Peer.ipv4("143.178.183.7/32"),   # change this to your home/office public IP
+            connection=ec2.Port.tcp(3389),              # RDP port
+            description="Allow RDP from only my IP",
+            )
+        
+
         # Create a KEY PAIR
-        self.key_pair_manag = ec2.KeyPair(
+        self.key_pair_manag = ec2.KeyPair.from_key_pair_name(
             self, "KeyPairmanag",
-            key_pair_name="keypair-name_manag",
-            type=ec2.KeyPairType.RSA
+            key_pair_name="keypair-name_manag"
         )
         
         # Create the MANAGEMENT SERVER EC2 instance
@@ -249,32 +253,32 @@ class FreshStack(Stack):
                   export_name="PrivateIpv4")
         
 
-        # Create a BACKUP PLAN
-        self.backup_plan = backup.BackupPlan(
-            self, "BackupPlan",
-            backup_plan_name="DailyBackupPlan",  
-             backup_plan_rules=[backup.BackupPlanRule(
-                rule_name="DailyRetentionRule",
-                delete_after=Duration.days(7),              # retain backups for 7 days
-                schedule_expression=events.Schedule.cron(
-                    hour="1",       
-                    minute="0", )   
-                )]
-            )
+        # # Create a BACKUP PLAN
+        # self.backup_plan = backup.BackupPlan(
+        #     self, "BackupPlan",
+        #     backup_plan_name="DailyBackupPlan",  
+        #      backup_plan_rules=[backup.BackupPlanRule(
+        #         rule_name="DailyRetentionRule",
+        #         delete_after=Duration.days(7),              # retain backups for 7 days
+        #         schedule_expression=events.Schedule.cron(
+        #             hour="1",       
+        #             minute="0", )   
+        #         )]
+        #     )
 
-        # Create a backup selection for the Webserver 
-        self.backup_plan.add_selection("add-webserver", 
-            backup_selection_name="backup-webserver",
-            resources=[backup.BackupResource.from_ec2_instance(self.web_server)
-                ]
-            )
+        # # Create a backup selection for the Webserver 
+        # self.backup_plan.add_selection("add-webserver", 
+        #     backup_selection_name="backup-webserver",
+        #     resources=[backup.BackupResource.from_ec2_instance(self.web_server)
+        #         ]
+        #     )
         
-         # Create a backup selection for the Management server 
-        self.backup_plan.add_selection("add-managementserver", 
-            backup_selection_name="backup-managserver",
-            resources=[backup.BackupResource.from_ec2_instance(self.management_server)
-                ]
-            )
+        #  # Create a backup selection for the Management server 
+        # self.backup_plan.add_selection("add-managementserver", 
+        #     backup_selection_name="backup-managserver",
+        #     resources=[backup.BackupResource.from_ec2_instance(self.management_server)
+        #         ]
+        #     )
 
 
 #         # Creëer een Application Load Balancer
