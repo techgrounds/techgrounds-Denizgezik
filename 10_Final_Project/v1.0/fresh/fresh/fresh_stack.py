@@ -4,7 +4,10 @@ from aws_cdk import (
     aws_backup as backup,           # for creating backup plan
     Duration,                       # for configuring backup rule
     aws_events as events,           # to schedule Backup time
-    aws_s3 as s3            
+    aws_s3 as s3,
+    aws_codedeploy as codedeploy,
+    aws_autoscaling as autoscaling,
+    aws_elasticloadbalancingv2 as elbv2            
 )
 from constructs import Construct
 from aws_cdk import CfnOutput
@@ -59,76 +62,76 @@ class FreshStack(Stack):
                                         )
         
 
-         # Create NACL for the webserver
-        self.nacl_webserver = ec2.NetworkAcl(self, "NaclWebServer",
-            vpc=vpc_A,
-            subnet_selection=ec2.SubnetSelection(subnets=[vpc_A.public_subnets[0]]),
-        )
+        #  # Create NACL for the WEBSERVER
+        # self.nacl_webserver = ec2.NetworkAcl(self, "NaclWebServer",
+        #     vpc=vpc_A,
+        #     subnet_selection=ec2.SubnetSelection(subnets=[vpc_A.public_subnets[0]]),
+        # )
 
-         # Allow NACL Inbound Ephemeral traffic for Linux kernels. Needed to install httpd.
-        self.nacl_webserver.add_entry("Inbound-Ephemeral",
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=90,
-            traffic=ec2.AclTraffic.tcp_port_range(32768, 60999),    # Linux ephemeral ports
-            direction=ec2.TrafficDirection.INGRESS
-            )
+        #  # Allow NACL Inbound Ephemeral traffic for Linux kernels. Needed to install httpd.
+        # self.nacl_webserver.add_entry("Inbound-Ephemeral",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=90,
+        #     traffic=ec2.AclTraffic.tcp_port_range(32768, 60999),    # Linux ephemeral ports
+        #     direction=ec2.TrafficDirection.INGRESS
+        #     )
     
-         # Allow NACL Inbound HTTP traffic from anywhere
-        self.nacl_webserver.add_entry("Inbound-HTTP",
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=100,
-            traffic=ec2.AclTraffic.tcp_port(80),                    # HTTP port
-            direction=ec2.TrafficDirection.INGRESS
-            )
+        #  # Allow NACL Inbound HTTP traffic from anywhere
+        # self.nacl_webserver.add_entry("Inbound-HTTP",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=100,
+        #     traffic=ec2.AclTraffic.tcp_port(80),                    # HTTP port
+        #     direction=ec2.TrafficDirection.INGRESS
+        #     )
 
-         # Allow NACL Inbound SSH traffic from admin server
-        self.nacl_webserver.add_entry("Inbound-SSH",
-            cidr=ec2.AclCidr.ipv4("10.20.20.20/32"),       # Static IP of Admin Server
-            rule_number=110,
-            traffic=ec2.AclTraffic.tcp_port(22),        # SSH port
-            direction=ec2.TrafficDirection.INGRESS
-            )
+        #  # Allow NACL Inbound SSH traffic from admin server
+        # self.nacl_webserver.add_entry("Inbound-SSH",
+        #     cidr=ec2.AclCidr.ipv4("10.20.20.20/32"),       # Static IP of Admin Server
+        #     rule_number=110,
+        #     traffic=ec2.AclTraffic.tcp_port(22),        # SSH port
+        #     direction=ec2.TrafficDirection.INGRESS
+        #     )
 
-        # Allow NACL Outbound all traffic
-        self.nacl_webserver.add_entry("Outbound-All",
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=100,
-            traffic=ec2.AclTraffic.all_traffic(),
-            direction=ec2.TrafficDirection.EGRESS
-            )
+        # # Allow NACL Outbound all traffic
+        # self.nacl_webserver.add_entry("Outbound-All",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=100,
+        #     traffic=ec2.AclTraffic.all_traffic(),
+        #     direction=ec2.TrafficDirection.EGRESS
+        #     )
 
-        # Create NACL for the management server
-        self.nacl_managserver = ec2.NetworkAcl(self, "NaclManagServer",
-            vpc=vpc_B,
-            subnet_selection=ec2.SubnetSelection(subnets=[vpc_B.public_subnets[0]]),
-        )
+        # # Create NACL for the MANAGEMENT SERVER
+        # self.nacl_managserver = ec2.NetworkAcl(self, "NaclManagServer",
+        #     vpc=vpc_B,
+        #     subnet_selection=ec2.SubnetSelection(subnets=[vpc_B.public_subnets[0]]),
+        # )
 
-        # Allow NACL Inbound Ephemeral traffic for Windows Server 2022.
-        self.nacl_managserver.add_entry("Inbound-Ephemeral",
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=90,
-            traffic=ec2.AclTraffic.tcp_port_range(49152, 65535),    # Windows ephemeral ports
-            direction=ec2.TrafficDirection.INGRESS
-            )
+        # # Allow NACL Inbound Ephemeral traffic for Windows Server 2022.
+        # self.nacl_managserver.add_entry("Inbound-Ephemeral",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=90,
+        #     traffic=ec2.AclTraffic.tcp_port_range(49152, 65535),    # Windows ephemeral ports
+        #     direction=ec2.TrafficDirection.INGRESS
+        #     )
         
-        # Allow NACL Inbound RDP traffic from only my IP
-        self.nacl_managserver.add_entry("Inbound-RDP",
-            cidr=ec2.AclCidr.ipv4("143.178.183.7/32"),    
-            rule_number=100,
-            traffic=ec2.AclTraffic.tcp_port(3389),          # RDP port
-            direction=ec2.TrafficDirection.INGRESS
-            )
+        # # Allow NACL Inbound RDP traffic from only my IP
+        # self.nacl_managserver.add_entry("Inbound-RDP",
+        #     cidr=ec2.AclCidr.ipv4("143.178.183.7/32"),    
+        #     rule_number=100,
+        #     traffic=ec2.AclTraffic.tcp_port(3389),          # RDP port
+        #     direction=ec2.TrafficDirection.INGRESS
+        #     )
         
-        # Allow NACL Outbound All traffic
-        self.nacl_managserver.add_entry("Outbound-All",
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=100,
-            traffic=ec2.AclTraffic.all_traffic(),
-            direction=ec2.TrafficDirection.EGRESS
-            )
+        # # Allow NACL Outbound All traffic
+        # self.nacl_managserver.add_entry("Outbound-All",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=100,
+        #     traffic=ec2.AclTraffic.all_traffic(),
+        #     direction=ec2.TrafficDirection.EGRESS
+        #     )
         
 
-         # Creëer een SG voor de webserver 
+         # Creëer een SG voor de WEBSERVER 
         sg_webserver = ec2.SecurityGroup(self,"sgWebServer", 
                                          vpc = vpc_A,
                                          description = "sg_webserver",
@@ -202,7 +205,7 @@ class FreshStack(Stack):
             )
 
 
-        # Creëer een SG voor de Management server  
+        # Creëer een SG voor de MANAGEMENT SERVER 
         sg_managserver = ec2.SecurityGroup(self,"sgmanagServer", 
                                          vpc = vpc_B,
                                          description = "sg_managserver",
@@ -280,21 +283,79 @@ class FreshStack(Stack):
         #         ]
         #     )
 
+        # Create Security Group for AUTO SCALING Web Server
+        self.sg_autoscaling = ec2.SecurityGroup(self, "sg-autoscaling",
+            vpc=vpc_A,
+            description="SG Autoscaling"
+            )
 
-#         # Creëer een Application Load Balancer
-#         alb = elbv2.ApplicationLoadBalancer(self, "MyALB",
-#     vpc=vpc_A,
-#     internet_facing=True
-# )
+        # Define Launch Template configuration
+        self.launch_template = ec2.LaunchTemplate(self, "LaunchTemplate",
+            security_group=self.sg_autoscaling,
+            user_data=ec2.UserData.custom(user_data),
+            instance_type = ec2.InstanceType("t2.micro"),
+            machine_image=ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2023),
+            block_devices=[ec2.BlockDevice(
+                device_name="/dev/xvda",                       
+                volume=ec2.BlockDeviceVolume.ebs(
+                    volume_size=8,                              
+                    encrypted=True,                            
+                    )
+                )]        
+            )
 
-#         # Creëer een Target Group voor de webserver
-#         target_group = alb.add_target_group("WebServerTargetGroup",
-#             port=80,
-#             targets=[self.web_server]
-#         )
 
-#         # Voeg een luisterregel toe voor HTTP-verkeer
-#         alb.add_listener("HTTPListener",
-#             port=80,
-#             default_target_groups=[target_group]
-#         )
+       # Create an AUTO SCALING GROUP
+        self.auto_scaling_group = autoscaling.AutoScalingGroup(self, "AutoScalingGroup",
+            vpc=vpc_A,
+            launch_template=self.launch_template,
+            min_capacity=1,
+            max_capacity=2,
+            desired_capacity=1,
+             health_check=autoscaling.HealthCheck.elb(
+                grace=Duration.minutes(5)
+                )
+        )
+
+         # Set Scale Policy
+        self.scale_policy = self.auto_scaling_group.scale_on_cpu_utilization("scale-policy",
+            target_utilization_percent=75,
+            )
+        
+         # Create a TARGET GROUP
+        self.target_group = elbv2.ApplicationTargetGroup(
+            self, "TargetGroup",
+            vpc=vpc_A,
+            port=80,
+            targets=[self.auto_scaling_group]
+            )
+        
+        # Create an APPLICATION LOAD BALANCER (ALB)
+        self.alb = elbv2.ApplicationLoadBalancer(self, "ALB",
+            vpc=vpc_A,
+            internet_facing=True
+        )
+
+        # Create a LISTENER for the ALB on port 80
+        self.listener = self.alb.add_listener(
+            "PublicListener",
+            port=80,
+            open=True,
+            default_target_groups=[self.target_group]
+            )
+        
+
+        # Output the ALB DNS name
+        CfnOutput(self, "ALB DNS Name",
+            value=self.alb.load_balancer_dns_name,
+            export_name="alb-dns-name"
+        )
+        
+        # Output the EC2 instance ID
+        CfnOutput(self, "Web Server Instance ID",
+            value=self.web_server.instance_id,
+            export_name="web-server-instance-id"
+        )
+
+
+
