@@ -62,73 +62,73 @@ class FreshStack(Stack):
                                         )
         
 
-        #  # Create NACL for the WEBSERVER
-        # self.nacl_webserver = ec2.NetworkAcl(self, "NaclWebServer",
-        #     vpc=vpc_A,
-        #     subnet_selection=ec2.SubnetSelection(subnets=[vpc_A.public_subnets[0]]),
-        # )
+         # Create NACL for the WEBSERVER
+        self.nacl_webserver = ec2.NetworkAcl(self, "NaclWebServer",
+            vpc=vpc_A,
+            subnet_selection=ec2.SubnetSelection(subnets=[vpc_A.public_subnets[0]]),
+        )
 
-        #  # Allow NACL Inbound Ephemeral traffic for Linux kernels. Needed to install httpd.
-        # self.nacl_webserver.add_entry("Inbound-Ephemeral",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=90,
-        #     traffic=ec2.AclTraffic.tcp_port_range(32768, 60999),    # Linux ephemeral ports
-        #     direction=ec2.TrafficDirection.INGRESS
-        #     )
+         # Allow NACL Inbound Ephemeral traffic for Linux kernels. Needed to install httpd.
+        self.nacl_webserver.add_entry("Inbound-Ephemeral",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=90,
+            traffic=ec2.AclTraffic.tcp_port_range(32768, 60999),    # Linux ephemeral ports
+            direction=ec2.TrafficDirection.INGRESS
+            )
     
-        #  # Allow NACL Inbound HTTP traffic from anywhere
-        # self.nacl_webserver.add_entry("Inbound-HTTP",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=100,
-        #     traffic=ec2.AclTraffic.tcp_port(80),                    # HTTP port
-        #     direction=ec2.TrafficDirection.INGRESS
-        #     )
+         # Allow NACL Inbound HTTP traffic from anywhere
+        self.nacl_webserver.add_entry("Inbound-HTTP",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.tcp_port(80),                    # HTTP port
+            direction=ec2.TrafficDirection.INGRESS
+            )
 
-        #  # Allow NACL Inbound SSH traffic from admin server
-        # self.nacl_webserver.add_entry("Inbound-SSH",
-        #     cidr=ec2.AclCidr.ipv4("10.20.20.20/32"),       # Static IP of Admin Server
-        #     rule_number=110,
-        #     traffic=ec2.AclTraffic.tcp_port(22),        # SSH port
-        #     direction=ec2.TrafficDirection.INGRESS
-        #     )
+         # Allow NACL Inbound SSH traffic from admin server
+        self.nacl_webserver.add_entry("Inbound-SSH",
+            cidr=ec2.AclCidr.ipv4("10.20.20.20/32"),       # Static IP of Admin Server
+            rule_number=110,
+            traffic=ec2.AclTraffic.tcp_port(22),        # SSH port
+            direction=ec2.TrafficDirection.INGRESS
+            )
 
-        # # Allow NACL Outbound all traffic
-        # self.nacl_webserver.add_entry("Outbound-All",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=100,
-        #     traffic=ec2.AclTraffic.all_traffic(),
-        #     direction=ec2.TrafficDirection.EGRESS
-        #     )
+        # Allow NACL Outbound all traffic
+        self.nacl_webserver.add_entry("Outbound-All",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.all_traffic(),
+            direction=ec2.TrafficDirection.EGRESS
+            )
 
-        # # Create NACL for the MANAGEMENT SERVER
-        # self.nacl_managserver = ec2.NetworkAcl(self, "NaclManagServer",
-        #     vpc=vpc_B,
-        #     subnet_selection=ec2.SubnetSelection(subnets=[vpc_B.public_subnets[0]]),
-        # )
+        # Create NACL for the MANAGEMENT SERVER
+        self.nacl_managserver = ec2.NetworkAcl(self, "NaclManagServer",
+            vpc=vpc_B,
+            subnet_selection=ec2.SubnetSelection(subnets=[vpc_B.public_subnets[0]]),
+        )
 
-        # # Allow NACL Inbound Ephemeral traffic for Windows Server 2022.
-        # self.nacl_managserver.add_entry("Inbound-Ephemeral",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=90,
-        #     traffic=ec2.AclTraffic.tcp_port_range(49152, 65535),    # Windows ephemeral ports
-        #     direction=ec2.TrafficDirection.INGRESS
-        #     )
+        # Allow NACL Inbound Ephemeral traffic for Windows Server 2022.
+        self.nacl_managserver.add_entry("Inbound-Ephemeral",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=90,
+            traffic=ec2.AclTraffic.tcp_port_range(49152, 65535),    # Windows ephemeral ports
+            direction=ec2.TrafficDirection.INGRESS
+            )
         
-        # # Allow NACL Inbound RDP traffic from only my IP
-        # self.nacl_managserver.add_entry("Inbound-RDP",
-        #     cidr=ec2.AclCidr.ipv4("143.178.183.7/32"),    
-        #     rule_number=100,
-        #     traffic=ec2.AclTraffic.tcp_port(3389),          # RDP port
-        #     direction=ec2.TrafficDirection.INGRESS
-        #     )
+        # Allow NACL Inbound RDP traffic from only my IP
+        self.nacl_managserver.add_entry("Inbound-RDP",
+            cidr=ec2.AclCidr.ipv4("143.178.183.7/32"),    
+            rule_number=100,
+            traffic=ec2.AclTraffic.tcp_port(3389),          # RDP port
+            direction=ec2.TrafficDirection.INGRESS
+            )
         
-        # # Allow NACL Outbound All traffic
-        # self.nacl_managserver.add_entry("Outbound-All",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=100,
-        #     traffic=ec2.AclTraffic.all_traffic(),
-        #     direction=ec2.TrafficDirection.EGRESS
-        #     )
+        # Allow NACL Outbound All traffic
+        self.nacl_managserver.add_entry("Outbound-All",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.all_traffic(),
+            direction=ec2.TrafficDirection.EGRESS
+            )
         
 
          # Creëer een SG voor de WEBSERVER 
@@ -304,10 +304,10 @@ class FreshStack(Stack):
                 )]        
             )
 
-
        # Create an AUTO SCALING GROUP
         self.auto_scaling_group = autoscaling.AutoScalingGroup(self, "AutoScalingGroup",
             vpc=vpc_A,
+            vpc_subnets = ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
             launch_template=self.launch_template,
             min_capacity=1,
             max_capacity=2,
@@ -344,7 +344,6 @@ class FreshStack(Stack):
             default_target_groups=[self.target_group]
             )
         
-
         # Output the ALB DNS name
         CfnOutput(self, "ALB DNS Name",
             value=self.alb.load_balancer_dns_name,
