@@ -7,7 +7,8 @@ from aws_cdk import (
     aws_s3 as s3,
     aws_codedeploy as codedeploy,
     aws_autoscaling as autoscaling,
-    aws_elasticloadbalancingv2 as elbv2            
+    aws_elasticloadbalancingv2 as elbv2,
+    aws_certificatemanager as cm,            
 )
 from constructs import Construct
 from aws_cdk import CfnOutput
@@ -266,112 +267,135 @@ class FreshStack(Stack):
         #           value=self.management_server.instance_public_ip,
         #           export_name="PublicIpv4")
         
-        # # Get the private IPV 4 of the private instance
-        # CfnOutput(self,
-        #           "ManagServer Private IP",
-        #           value=self.management_server.instance_private_ip,
-        #           export_name="PrivateIpv4")
+        # Get the private IPV 4 of the private instance
+        CfnOutput(self,
+                  "ManagServer Private IP",
+                  value=self.management_server.instance_private_ip,
+                  export_name="PrivateIpv4")
         
 
-        # # Create a BACKUP PLAN
-        # self.backup_plan = backup.BackupPlan(
-        #     self, "BackupPlan",
-        #     backup_plan_name="DailyBackupPlan",  
-        #      backup_plan_rules=[backup.BackupPlanRule(
-        #         rule_name="DailyRetentionRule",
-        #         delete_after=Duration.days(7),              # retain backups for 7 days
-        #         schedule_expression=events.Schedule.cron(
-        #             hour="1",       
-        #             minute="0", )   
-        #         )]
-        #     )
+        # Create a BACKUP PLAN
+        self.backup_plan = backup.BackupPlan(
+            self, "BackupPlan",
+            backup_plan_name="DailyBackupPlan",  
+             backup_plan_rules=[backup.BackupPlanRule(
+                rule_name="DailyRetentionRule",
+                delete_after=Duration.days(7),              # retain backups for 7 days
+                schedule_expression=events.Schedule.cron(
+                    hour="1",       
+                    minute="0", )   
+                )]
+            )
 
-        # # Create a backup selection for the Webserver 
-        # self.backup_plan.add_selection("add-webserver", 
-        #     backup_selection_name="backup-webserver",
-        #     resources=[backup.BackupResource.from_ec2_instance(self.web_server)
-        #         ]
-        #     )
+        # Create a backup selection for the Webserver 
+        self.backup_plan.add_selection("add-webserver", 
+            backup_selection_name="backup-webserver",
+            resources=[backup.BackupResource.from_ec2_instance(self.web_server)
+                ]
+            )
         
-        #  # Create a backup selection for the Management server 
-        # self.backup_plan.add_selection("add-managementserver", 
-        #     backup_selection_name="backup-managserver",
-        #     resources=[backup.BackupResource.from_ec2_instance(self.management_server)
-        #         ]
-        #     )
+         # Create a backup selection for the Management server 
+        self.backup_plan.add_selection("add-managementserver", 
+            backup_selection_name="backup-managserver",
+            resources=[backup.BackupResource.from_ec2_instance(self.management_server)
+                ]
+            )
 
-    #     # Create Security Group for AUTO SCALING Web Server
-    #     self.sg_autoscaling = ec2.SecurityGroup(self, "sg-autoscaling",
-    #         vpc=vpc_A,
-    #         description="SG Autoscaling"
-    #         )
+        # Create Security Group for AUTO SCALING Web Server
+        self.sg_autoscaling = ec2.SecurityGroup(self, "sg-autoscaling",
+            vpc=vpc_A,
+            description="SG Autoscaling"
+            )
 
-    #     # Define Launch Template configuration
-    #     self.launch_template = ec2.LaunchTemplate(self, "LaunchTemplate",
-    #         security_group=self.sg_autoscaling,
-    #         user_data=ec2.UserData.custom(user_data),
-    #         instance_type = ec2.InstanceType("t2.micro"),
-    #         machine_image=ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2023),
-    #         block_devices=[ec2.BlockDevice(
-    #             device_name="/dev/xvda",                       
-    #             volume=ec2.BlockDeviceVolume.ebs(
-    #                 volume_size=8,                              
-    #                 encrypted=True,                            
-    #                 )
-    #             )]        
-    #         )
+        # Define Launch Template configuration
+        self.launch_template = ec2.LaunchTemplate(self, "LaunchTemplate",
+            launch_template_name="launch-template",                                              
+            security_group=self.sg_autoscaling,
+            user_data=ec2.UserData.custom(user_data),
+            instance_type = ec2.InstanceType("t2.micro"),
+            machine_image=ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2023),
+            block_devices=[ec2.BlockDevice(
+                device_name="/dev/xvda",                       
+                volume=ec2.BlockDeviceVolume.ebs(
+                    volume_size=8,                              
+                    encrypted=True,                            
+                    )
+                )]        
+            )
 
-    #    # Create an AUTO SCALING GROUP
-    #     self.auto_scaling_group = autoscaling.AutoScalingGroup(self, "AutoScalingGroup",
-    #         vpc=vpc_A,
-    #         vpc_subnets = ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-    #         launch_template=self.launch_template,
-    #         min_capacity=1,
-    #         max_capacity=2,
-    #         desired_capacity=1,
-    #          health_check=autoscaling.HealthCheck.elb(
-    #             grace=Duration.minutes(5)
-    #             )
-    #     )
+       # Create an AUTO SCALING GROUP
+        self.auto_scaling_group = autoscaling.AutoScalingGroup(self, "AutoScalingGroup",
+            vpc=vpc_A,
+            vpc_subnets = ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS),
+            launch_template=self.launch_template,
+            min_capacity=1,
+            max_capacity=2,
+            desired_capacity=1,
+             health_check=autoscaling.HealthCheck.elb(
+                grace=Duration.minutes(5)
+                )
+        )
 
-    #      # Set Scale Policy
-    #     self.scale_policy = self.auto_scaling_group.scale_on_cpu_utilization("scale-policy",
-    #         target_utilization_percent=75,
-    #         )
+         # Set Scale Policy
+        self.scale_policy = self.auto_scaling_group.scale_on_cpu_utilization("scale-policy",
+            target_utilization_percent=75,
+            )
         
-    #      # Create a TARGET GROUP
-    #     self.target_group = elbv2.ApplicationTargetGroup(
-    #         self, "TargetGroup",
-    #         vpc=vpc_A,
-    #         port=80,
-    #         targets=[self.auto_scaling_group]
-    #         )
         
-    #     # Create an APPLICATION LOAD BALANCER (ALB)
-    #     self.alb = elbv2.ApplicationLoadBalancer(self, "ALB",
-    #         vpc=vpc_A,
-    #         internet_facing=True
-    #     )
+        # Create an APPLICATION LOAD BALANCER (ALB)
+        self.alb = elbv2.ApplicationLoadBalancer(self, "ALB",
+            vpc=vpc_A,
+            internet_facing=True
+        )
 
-    #     # Create a LISTENER for the ALB on port 80
-    #     self.listener = self.alb.add_listener(
-    #         "PublicListener",
-    #         port=80,
-    #         open=True,
-    #         default_target_groups=[self.target_group]
-    #         )
+          # Create a TARGET GROUP
+        self.target_group = elbv2.ApplicationTargetGroup(
+            self, "TargetGroup",
+            vpc=vpc_A,
+            port=443,
+            targets=[self.auto_scaling_group]
+            )
+
+        #import SSL certificate
+        certificate_arn_alb="arn:aws:acm:eu-central-1:136779500689:certificate/87f60f7d-3e20-429f-b76e-9e25f7cc192b"
+
+          # Import self signed certificate from console
+        self.certificate_ss_imp = cm.Certificate.from_certificate_arn(self, "certificate-ss-imp",
+            certificate_arn=certificate_arn_alb
+            )
         
-    #     # Output the ALB DNS name
-    #     CfnOutput(self, "ALB DNS Name",
-    #         value=self.alb.load_balancer_dns_name,
-    #         export_name="alb-dns-name"
-    #     )
+        # Create a LISTENER for the ALB on port 443
+        self.https_listener = self.alb.add_listener(
+            "https_Listener",
+            port=443,
+            ssl_policy=elbv2.SslPolicy.RECOMMENDED_TLS,
+            certificates=[self.certificate_ss_imp],
+            open=True,
+            default_target_groups=[self.target_group]
+            )
+
+        # Add listener to the ALB for port 80 and redirect traffic to port 443
+        self.http_listener = self.alb.add_listener("http_listener",
+            port=80,
+            default_action=elbv2.ListenerAction.redirect(
+                port="443",
+                protocol="HTTPS",
+                )
+            )
+        
+        
+        # # Output the ALB DNS name
+        # CfnOutput(self, "ALB DNS Name",
+        #     value=self.alb.load_balancer_dns_name,
+        #     export_name="alb-dns-name"
+        # )
         
         # # Output the EC2 instance ID
         # CfnOutput(self, "Web Server Instance ID",
         #     value=self.web_server.instance_id,
         #     export_name="web-server-instance-id"
         # )
+
 
 
 
