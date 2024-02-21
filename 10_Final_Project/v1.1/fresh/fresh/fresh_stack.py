@@ -352,7 +352,7 @@ class FreshStack(Stack):
         self.target_group = elbv2.ApplicationTargetGroup(
             self, "TargetGroup",
             vpc=vpc_A,
-            port=443,
+            port=80,
             targets=[self.auto_scaling_group]
             )
 
