@@ -156,7 +156,7 @@ class FreshStack(Stack):
                                          allow_all_outbound = True,
         )
 
-        #open pord webserverSG
+        #open port webserverSG
         sg_webserver.add_ingress_rule(
             peer=ec2.Peer.ipv4("0.0.0.0/0"),
             connection=ec2.Port.tcp(80),
@@ -267,39 +267,39 @@ class FreshStack(Stack):
         #           value=self.management_server.instance_public_ip,
         #           export_name="PublicIpv4")
         
-        # Get the private IPV 4 of the private instance
-        CfnOutput(self,
-                  "ManagServer Private IP",
-                  value=self.management_server.instance_private_ip,
-                  export_name="PrivateIpv4")
+        # # Get the private IPV 4 of the private instance
+        # CfnOutput(self,
+        #           "ManagServer Private IP",
+        #           value=self.management_server.instance_private_ip,
+        #           export_name="PrivateIpv4")
         
 
-        # Create a BACKUP PLAN
-        self.backup_plan = backup.BackupPlan(
-            self, "BackupPlan",
-            backup_plan_name="DailyBackupPlan",  
-             backup_plan_rules=[backup.BackupPlanRule(
-                rule_name="DailyRetentionRule",
-                delete_after=Duration.days(7),              # retain backups for 7 days
-                schedule_expression=events.Schedule.cron(
-                    hour="1",       
-                    minute="0", )   
-                )]
-            )
+        # # Create a BACKUP PLAN
+        # self.backup_plan = backup.BackupPlan(
+        #     self, "BackupPlan",
+        #     backup_plan_name="DailyBackupPlan",  
+        #      backup_plan_rules=[backup.BackupPlanRule(
+        #         rule_name="DailyRetentionRule",
+        #         delete_after=Duration.days(7),              # retain backups for 7 days
+        #         schedule_expression=events.Schedule.cron(
+        #             hour="1",       
+        #             minute="0", )   
+        #         )]
+        #     )
 
-        # Create a backup selection for the Webserver 
-        self.backup_plan.add_selection("add-webserver", 
-            backup_selection_name="backup-webserver",
-            resources=[backup.BackupResource.from_ec2_instance(self.web_server)
-                ]
-            )
+        # # Create a backup selection for the Webserver 
+        # self.backup_plan.add_selection("add-webserver", 
+        #     backup_selection_name="backup-webserver",
+        #     resources=[backup.BackupResource.from_ec2_instance(self.web_server)
+        #         ]
+        #     )
         
-         # Create a backup selection for the Management server 
-        self.backup_plan.add_selection("add-managementserver", 
-            backup_selection_name="backup-managserver",
-            resources=[backup.BackupResource.from_ec2_instance(self.management_server)
-                ]
-            )
+        #  # Create a backup selection for the Management server 
+        # self.backup_plan.add_selection("add-managementserver", 
+        #     backup_selection_name="backup-managserver",
+        #     resources=[backup.BackupResource.from_ec2_instance(self.management_server)
+        #         ]
+        #     )
 
         # Create Security Group for AUTO SCALING Web Server
         self.sg_autoscaling = ec2.SecurityGroup(self, "sg-autoscaling",
